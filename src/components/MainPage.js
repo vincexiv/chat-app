@@ -6,6 +6,8 @@ import "../css/main-body.css"
 
 function MainPage(){
     const {me, setMe} = useContext(userDetails)
+
+    console.log(me)
     
     return (
         <div className="container main-body">

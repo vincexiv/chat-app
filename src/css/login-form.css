@@ -68,5 +68,9 @@ textarea {
     text-align: center;
     border-radius: 1rem;
     cursor: pointer;
-    width: 6rem;
+    min-width: 6rem;
+}
+
+.btn:hover{
+    opacity: 0.8;
 }
