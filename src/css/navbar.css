@@ -1,0 +1,24 @@
+.navbar {
+    width: 100%;
+    height: 3rem;
+    display: grid;
+    place-items: center;
+}
+
+.app-name {
+    font-weight: 700;
+}
+
+.container ul {
+    display: flex;
+    list-style: none;
+}
+
+.container a {
+    text-decoration: none;
+}
+
+.container li:nth-child(2){
+    padding-left: 0.6rem;
+    padding-right: 0.6rem;
+}
