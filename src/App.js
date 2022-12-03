@@ -1,14 +1,14 @@
 import React from "react";
 import Navbar from "./components/Navbar";
 import Background from "./components/Background";
-import MainBody from "./components/MainBody";
+import MainPage from "./components/MainPage";
 
 function App(){
   return (
     <>
       <Navbar loggedIn={false}/>
       <Background />
-      <MainBody />
+      <MainPage />
     </>
   )
 }
