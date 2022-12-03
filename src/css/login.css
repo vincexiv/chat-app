@@ -1,0 +1,7 @@
+.login {
+    height: calc(100vh - 5rem);
+    display: grid;
+    place-items: center;
+    position: relative;
+    top: -2rem;
+}

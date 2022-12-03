@@ -1,11 +1,10 @@
 .contacts {
-    /* width: calc(min(20rem, 50%)); */
     width: 33%;
     height: calc(100vh - 16rem);
-    background-color: rgba(10, 59, 231, 0.6);
+    background-color: rgba(255, 255, 255, 0.1);
     padding-top: 1rem;
     padding-bottom: 1rem;
     padding-right: 1rem;
     border-radius: 1rem;
-    border: solid white 0.1rem;
+    border: solid white 0.05rem;
 }
