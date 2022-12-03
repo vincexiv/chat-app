@@ -33,12 +33,12 @@ function Login() {
                         setSubmitting(false)
                         navigate('/home')
                     })
+                }else if (res.status == 401) {
+                    alert("Invalid username or password!")
                 } else {
-                    res.json().then(data => {
-                        alert("Unable to sign in\n" + data.errors.join('\n'))
-                        setSubmitting(false)
-                    })
+                    alert("An error occurred. Try again later")
                 }
+                setSubmitting(false)
             })
     }
 

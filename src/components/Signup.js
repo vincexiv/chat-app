@@ -38,12 +38,12 @@ function Signup(){
                     setSubmitting(false)
                     navigate('/home')
                 })
-            }else{
-                res.json().then(data => {
-                    alert("Unable to sign in\n" + data.errors.join('\n'))
-                    setSubmitting(false)
-                })
+            }else if (res.status == 422){
+                res.json().then(data => alert("Unable to sign in\n" + data.errors.join('\n')))
+            }else {
+                alert("An error occurred. Try again later")
             }
+            setSubmitting(false)
         })
     }
 
