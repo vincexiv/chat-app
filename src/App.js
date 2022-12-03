@@ -1,9 +1,13 @@
 import React from "react";
 import Navbar from "./components/Navbar";
+import Background from "./components/Background";
 
 function App(){
   return (
-    <Navbar loggedIn={false}/>
+    <>
+      <Navbar loggedIn={false}/>
+      <Background />
+    </>
   )
 }
 
