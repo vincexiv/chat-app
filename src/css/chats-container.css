@@ -1,0 +1,11 @@
+.chats-container {
+    /* width: calc(min(20rem, 50%)); */
+    width: calc(67% - 2rem);
+    height: calc(100vh - 16rem);
+    background-color: rgba(0, 0, 0, 0.6);
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-right: 1rem;
+    border-radius: 1rem;
+    border: solid white 0.1rem;
+}
