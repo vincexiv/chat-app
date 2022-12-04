@@ -1,0 +1,39 @@
+.now-chatting {
+    display: flex;
+    background-color: rgb(231, 54, 53);
+    border-radius: 1rem;
+    margin-bottom: 0.2rem;
+    align-items: center;
+}
+
+img {
+    width: 3rem;
+    height: 3rem;
+    padding: 0.3rem;
+    background-color: green;
+    border-radius: 50%;
+    margin: 0.5rem;
+}
+
+h1, p {
+    font-size: 0.8rem;
+    padding: 0.1rem;
+}
+
+h1 {
+    color: var(--primary-color);
+}
+
+.details {
+    display: flex;
+    justify-content: space-between;
+    height: 4rem;
+}
+
+.they-details, .me-details {
+    padding: 0.5rem;
+}
+
+.me-details {
+    text-align: right;
+}
