@@ -1,18 +1,17 @@
-import React from "react";
+import React, {useContext} from "react";
+import { userDetails } from "./UserDetailsContextProvider";
 import "../css/now-chatting.css"
 
-function NowChatting({me, they}){
-    const chatmate = they? they : me
-
-    console.log("me and they", me, they)
+function NowChatting(){
+    const {me, they} = useContext(userDetails)
 
     return (
         <div className="now-chatting container">
             <div className="details">
-                <img src={chatmate.profile_picture} alt={chatmate.full_name}/>
+                <img src={they.profile_picture} alt={they.full_name}/>
                 <div className="they-details">
-                    <h1>{chatmate.full_name}</h1>
-                    <p>{chatmate.bio}</p>
+                    <h1>{they.full_name}</h1>
+                    <p>{they.bio}</p>
                 </div>
             </div>
 

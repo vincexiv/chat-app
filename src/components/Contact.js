@@ -2,7 +2,6 @@ import React from "react";
 import "../css/contact.css"
 
 function Contact({ contact, onChatWith }){
-    console.log(contact)
     return (
         <div className="contact" onClick={(e)=> onChatWith(contact.userId) }>
             <div className="status"></div>

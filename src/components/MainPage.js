@@ -8,23 +8,44 @@ import NowChatting from "./NowChatting";
 import "../css/main-body.css"
 
 function MainPage(){
-    const {me, setMe, allUsers} = useContext(userDetails)
-    const [they, setThey] = useState(me)
+    const {me, setMe, they, setThey, setAllUsers, allUsers} = useContext(userDetails)
     const navigate = useNavigate()
 
     useEffect(()=>{
         fetch('/me')
         .then(res => {
             if(res.status == 200){
-                res.json().then(data => setMe(data))
+                res.json().then(data => {
+                    setMe(data)
+                    getAllUsers()
+                    setThey(JSON.parse(localStorage.getItem("they")))
+                })
             }else{
                 navigate('/login')
             }
         })
     }, [])
 
+    console.log(localStorage.getItem("they"))
+
+    function getAllUsers() {
+        fetch('/users')
+            .then(res => {
+                if (res.status == 200) {
+                    res.json().then(data => setAllUsers(data))
+                } else {
+                    console.log("Error fetching all users (login page)")
+                }
+            })
+    }
+
     function handleChatWith(newChatMateId){
-        setThey(allUsers.find(user => user.id == newChatMateId))
+
+        setThey(they => {
+            const newThey = allUsers.find(user => user.id == newChatMateId)
+            localStorage.setItem("they", JSON.stringify(newThey))
+            return newThey
+        })
     }
     
     return (
