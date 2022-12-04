@@ -15,7 +15,7 @@ function Signup(){
     }
     const [userInfo, setUserInfo] = useState(defaultState)
     const [submitting, setSubmitting] = useState(false)
-    const {me, setMe} = useContext(userDetails)
+    const {setMessages, setMe, setAllUsers} = useContext(userDetails)
     const navigate = useNavigate()
 
     function handleInputChange(e){
@@ -33,9 +33,11 @@ function Signup(){
         })
         .then(res => {
             if(res.status == 201){
-                res.json().then(data => {
+                res.json().then(data => {                   
                     setMe(data)
+                    setMessages(data.messages)
                     setSubmitting(false)
+                    getAllUsers()
                     navigate('/home')
                 })
             }else if (res.status == 422){
@@ -45,6 +47,17 @@ function Signup(){
             }
             setSubmitting(false)
         })
+    }
+
+    function getAllUsers() {
+        fetch('/users')
+            .then(res => {
+                if (res.status == 200) {
+                    res.json().then(data => setAllUsers(data))
+                } else {
+                    console.log("Error fetching all users (login page)")
+                }
+            })
     }
 
     function goToLoginPage(){

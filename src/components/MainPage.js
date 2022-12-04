@@ -8,7 +8,7 @@ import NowChatting from "./NowChatting";
 import "../css/main-body.css"
 
 function MainPage(){
-    const {me, setMe, they, setThey, setAllUsers, allUsers} = useContext(userDetails)
+    const {me, setMe, they, setThey, setAllUsers, allUsers, setMessages} = useContext(userDetails)
     const navigate = useNavigate()
 
     useEffect(()=>{
@@ -19,6 +19,7 @@ function MainPage(){
                     setMe(data)
                     getAllUsers()
                     setThey(JSON.parse(localStorage.getItem("they")))
+                    setMessages(data.messages)
                 })
             }else{
                 navigate('/login')

@@ -8,10 +8,10 @@ function NowChatting(){
     return (
         <div className="now-chatting container">
             <div className="details">
-                <img src={they.profile_picture} alt={they.full_name}/>
+                <img src={they? they.profile_picture: null} alt={they? they.full_name: null}/>
                 <div className="they-details">
-                    <h1>{they.full_name}</h1>
-                    <p>{they.bio}</p>
+                    <h1>{they? they.full_name: null}</h1>
+                    <p>{they? they.bio: null}</p>
                 </div>
             </div>
 

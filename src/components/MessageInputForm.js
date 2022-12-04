@@ -2,14 +2,14 @@ import React, {useState, useContext} from "react";
 import { userDetails } from "./UserDetailsContextProvider";
 import "../css/message-input-form.css"
 
-function MessageInputForm({they}){
-    const { me, setMe } = useContext(userDetails)
+function MessageInputForm(){
+    const { me, they, messages, setMessages} = useContext(userDetails)
+    const [newMessage, setNewMessage] = useState({})
     const defaultState = {
         sender: me ? me.id : "",
         receiver: they? they.id : "",
         content: ""
     }
-    const [newMessage, setNewMessage] = useState(defaultState)
 
     function updateMessages(newMessage){
         fetch('/messages', {
@@ -20,9 +20,9 @@ function MessageInputForm({they}){
             .then(res => {
                 if (res.status == 201) {
                     res.json().then(data => {
-                        setMe(me => (
-                            {...me, messages: [...me.messages, data]}
-                        ))
+                        setMessages(messages => ([...messages, data]))
+                        console.log("posted message: ", data)
+                        console.log("current", messages)
                     })
                 }
             })
@@ -33,16 +33,13 @@ function MessageInputForm({they}){
 
         if(me && they){
             updateMessages(newMessage)
-            console.log("new message as it appears now: ", newMessage)
-            console.log("me and they: ", me, they)
 
         }
 
     }
 
     function handleChange(e){
-        console.log("new message: ", newMessage)
-        setNewMessage(newMessage => ({...newMessage, [e.target.name]: e.target.value}))
+        setNewMessage(() => ({...defaultState, [e.target.name]: e.target.value}))
     }
 
 

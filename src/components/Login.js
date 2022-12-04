@@ -10,7 +10,7 @@ function Login() {
     }
     const [userInfo, setUserInfo] = useState(defaultState)
     const [submitting, setSubmitting] = useState(false)
-    const { setMe, setAllUsers } = useContext(userDetails)
+    const { setMe, setAllUsers, setMessages } = useContext(userDetails)
     const navigate = useNavigate()
 
     function handleInputChange(e) {
@@ -27,6 +27,8 @@ function Login() {
                 if (res.status == 200) {
                     res.json().then(data => {
                         setMe(data)
+                        setMessages(data.messages)
+
                         setSubmitting(false)
                         setAllUsers(getAllUsers())
                         navigate('/home')
