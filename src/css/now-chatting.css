@@ -27,7 +27,7 @@ h1 {
 .details {
     display: flex;
     justify-content: space-between;
-    height: 4rem;
+    min-height: 4rem;
 }
 
 .they-details, .me-details {
