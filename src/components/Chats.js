@@ -1,10 +1,22 @@
-import React from "react";
+import React, {useContext} from "react";
+import Chat from "./Chat";
+import {userDetails} from "./UserDetailsContextProvider"
 import "../css/chats.css"
 
 function Chats(){
+    const {messages, they} = useContext(userDetails)
+
+    let chats = []
+    
+    if(they){
+
+        chats = messages.filter(message => message.sender == they.id || message.receiver == they.id)
+        chats = chats.map(message => <Chat key={message.id} message={message} />)
+    }
+
     return (
         <div className="chats">
-            what
+            {chats}
         </div>
     )
 }
