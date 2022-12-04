@@ -28,7 +28,7 @@ function Login() {
                     res.json().then(data => {
                         setMe(data)
                         setSubmitting(false)
-                        getAllUsers()
+                        setAllUsers(getAllUsers())
                         navigate('/home')
                     })
                 } else if (res.status == 401) {

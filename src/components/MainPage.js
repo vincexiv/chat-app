@@ -4,6 +4,7 @@ import {useNavigate} from 'react-router-dom'
 import Contacts from "./Contacts";
 import ChatsContainer from "./ChatsContainer";
 import NowChatting from "./NowChatting";
+
 import "../css/main-body.css"
 
 function MainPage(){
@@ -31,7 +32,7 @@ function MainPage(){
             <NowChatting me={me} they={they}/>
             <div className="container main-body">
                 <Contacts onChatWith={handleChatWith}/>
-                <ChatsContainer />
+                <ChatsContainer me={me} they={they} />
             </div>
         </>
     )

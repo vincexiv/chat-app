@@ -1,0 +1,14 @@
+.chats {
+    /* width: calc(min(20rem, 50%)); */
+    /* width: calc(62% - 2rem); */
+    height: calc(100vh - 27rem);
+    background-color: rgba(0, 0, 0, 0.5);
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-right: 1rem;
+    border-radius: 1rem;
+    border: solid rgba(255, 255, 255, 0.3) 0.1rem;
+
+    display: flex;
+    flex-direction: column;
+}

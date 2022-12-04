@@ -1,0 +1,23 @@
+.message-input {
+    margin-top: 1rem;
+}
+
+.message-input form {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.message-input textarea{
+    min-width: calc(80% - 2rem);
+    border-radius: 1rem;
+    margin: 0.2rem;
+    outline: none;
+    border: solid var(--secondary-color) 0.1rem;
+    padding: 0.5rem;
+    color: white;
+    font-size: 0.7rem;
+
+    background-color: transparent;
+}
