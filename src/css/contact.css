@@ -1,0 +1,56 @@
+.contact {
+    display: flex;
+    width: 100%;
+    margin: 0.2rem;
+    /* background-color: red; */
+}
+
+.full-name {
+    background-color: transparent;
+    /* width: 20rem; */
+    width : 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0.1rem 0 0.1rem;
+    border-top: 0.1rem solid rgba(255, 255, 255, 0.5);
+    border-bottom: 0.1rem solid rgba(255, 255, 255, 0.5);
+}
+
+.full-name h1 {
+    color: var(--secondary-color);
+}
+
+.status, .views {
+    width: 0.8rem;
+    height: 1.6rem;
+    background-color: green;
+}
+
+.status {
+    border-radius: 1.6rem 0 0 1.6rem;
+}
+
+.views {
+    border-radius: 0 1.6rem 1.6rem 0;
+}
+
+.views .view-count {
+    width: 1.3rem;
+    height: 1.3rem;
+    position: relative;
+    top: 0.1rem;
+    right: 0.7rem;
+    background-color: var(--secondary-color);
+    z-index: 10;
+    border-radius: 1.3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid var(--primary-color) 0.1rem;
+}
+
+.views p {
+    font-size: 0.7rem;
+}

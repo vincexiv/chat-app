@@ -1,5 +1,6 @@
 :root {
   --primary-color: rgb(14, 42, 71);
+  --secondary-color: rgb(231, 54, 53);
 }
 
 * {
@@ -15,4 +16,21 @@
   width: calc(min(60rem, 80%));
   margin: auto;
   align-items: center;
+}
+
+.btn {
+  border: rgba(255, 255, 255, 0.5);
+  outline: none;
+  background-color: var(--secondary-color);
+  color: white;
+  font-size: 1rem;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  text-align: center;
+  border-radius: 1rem;
+  cursor: pointer;
+  min-width: 6rem;
+}
+
+.btn:hover {
+  opacity: 0.8;
 }

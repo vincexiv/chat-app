@@ -57,20 +57,3 @@ textarea {
     justify-content: space-evenly;
     padding-top: 2rem;
 }
-
-.btn {
-    border: rgba(255, 255, 255, 0.5);
-    outline: none;
-    background-color: rgb(231, 54, 53);
-    color: white;
-    font-size: 1rem;
-    padding: 0.5rem 1rem 0.5rem 1rem;
-    text-align: center;
-    border-radius: 1rem;
-    cursor: pointer;
-    min-width: 6rem;
-}
-
-.btn:hover{
-    opacity: 0.8;
-}
