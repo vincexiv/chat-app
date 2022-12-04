@@ -3,7 +3,7 @@ import { userDetails } from "./UserDetailsContextProvider";
 import Contact from "./Contact"
 import "../css/contacts.css"
 
-function Contacts(){
+function Contacts({onChatWith}){
     const {me, setMe} = useContext(userDetails)
     const [contacts, setContacts] = useState([])
 
@@ -55,7 +55,9 @@ function Contacts(){
         return contacts
     }
 
-    const contactComponents = contacts.map(contact => <Contact key={contact.userId} contact={contact} />)
+    const contactComponents = contacts.map(
+        contact => <Contact key={contact.userId} contact={contact} onChatWith={onChatWith} />
+    )
 
     return (
         <div className="contacts">

@@ -7,7 +7,8 @@ import NowChatting from "./NowChatting";
 import "../css/main-body.css"
 
 function MainPage(){
-    const {me, setMe} = useContext(userDetails)
+    const {me, setMe, allUsers} = useContext(userDetails)
+    const [they, setThey] = useState(me)
     const navigate = useNavigate()
 
     useEffect(()=>{
@@ -20,12 +21,16 @@ function MainPage(){
             }
         })
     }, [])
+
+    function handleChatWith(newChatMateId){
+        setThey(allUsers.find(user => user.id == newChatMateId))
+    }
     
     return (
         <>
-            <NowChatting me={me} they={me}/>
+            <NowChatting me={me} they={they}/>
             <div className="container main-body">
-                <Contacts />
+                <Contacts onChatWith={handleChatWith}/>
                 <ChatsContainer />
             </div>
         </>

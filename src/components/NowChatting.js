@@ -2,13 +2,17 @@ import React from "react";
 import "../css/now-chatting.css"
 
 function NowChatting({me, they}){
+    const chatmate = they? they : me
+
+    console.log("me and they", me, they)
+
     return (
         <div className="now-chatting container">
             <div className="details">
-                <img src={they.profile_picture} alt={they.full_name}/>
+                <img src={chatmate.profile_picture} alt={chatmate.full_name}/>
                 <div className="they-details">
-                    <h1>{they.full_name}</h1>
-                    <p>{they.bio}</p>
+                    <h1>{chatmate.full_name}</h1>
+                    <p>{chatmate.bio}</p>
                 </div>
             </div>
 

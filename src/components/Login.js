@@ -10,17 +10,14 @@ function Login() {
     }
     const [userInfo, setUserInfo] = useState(defaultState)
     const [submitting, setSubmitting] = useState(false)
-    const { me, setMe } = useContext(userDetails)
+    const { setMe, setAllUsers } = useContext(userDetails)
     const navigate = useNavigate()
 
     function handleInputChange(e) {
         setUserInfo(userInfo => ({ ...userInfo, [e.target.name]: e.target.value }))
     }
 
-    function handleSubmit(e) {
-        e.preventDefault()
-        setSubmitting(true)
-
+    function login(){
         fetch('/login', {
             method: 'POST',
             headers: { "Content-Type": "application/json", "Accept": "application/json" },
@@ -31,15 +28,33 @@ function Login() {
                     res.json().then(data => {
                         setMe(data)
                         setSubmitting(false)
+                        getAllUsers()
                         navigate('/home')
                     })
-                }else if (res.status == 401) {
+                } else if (res.status == 401) {
                     alert("Invalid username or password!")
                 } else {
                     alert("An error occurred. Try again later")
                 }
                 setSubmitting(false)
-            })
+            })  
+    }
+
+    function getAllUsers(){
+        fetch('/users')
+        .then(res => {
+            if(res.status == 200){
+                res.json().then(data => setAllUsers(data))
+            }else {
+                console.log("Error fetching all users (login page)")
+            }
+        })
+    }
+
+    function handleSubmit(e) {
+        e.preventDefault()
+        setSubmitting(true)
+        login()
     }
 
     function goToSignupPage(){
