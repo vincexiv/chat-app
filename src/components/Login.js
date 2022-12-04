@@ -47,8 +47,6 @@ function Login() {
         .then(res => {
             if(res.status == 200){
                 res.json().then(data => setAllUsers(data))
-            }else {
-                console.log("Error fetching all users (login page)")
             }
         })
     }

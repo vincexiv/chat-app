@@ -4,6 +4,7 @@ import "../css/chats.css"
 function Chats(){
     return (
         <div className="chats">
+            what
         </div>
     )
 }

@@ -27,15 +27,11 @@ function MainPage(){
         })
     }, [])
 
-    console.log(localStorage.getItem("they"))
-
     function getAllUsers() {
         fetch('/users')
             .then(res => {
                 if (res.status == 200) {
                     res.json().then(data => setAllUsers(data))
-                } else {
-                    console.log("Error fetching all users (login page)")
                 }
             })
     }
@@ -54,7 +50,7 @@ function MainPage(){
             <NowChatting me={me} they={they}/>
             <div className="container main-body">
                 <Contacts onChatWith={handleChatWith}/>
-                <ChatsContainer me={me} they={they} />
+                <ChatsContainer />
             </div>
         </>
     )

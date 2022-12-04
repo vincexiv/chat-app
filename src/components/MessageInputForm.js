@@ -4,12 +4,9 @@ import "../css/message-input-form.css"
 
 function MessageInputForm(){
     const { me, they, messages, setMessages} = useContext(userDetails)
-    const [newMessage, setNewMessage] = useState({})
-    const defaultState = {
-        sender: me ? me.id : "",
-        receiver: they? they.id : "",
-        content: ""
-    }
+    const senderAndReceiver = {sender: me ? me.id : "", receiver: they? they.id : ""}
+    const [sending, setSending] = useState(false)
+    const [messageContent, setMessageContent] = useState("")
 
     function updateMessages(newMessage){
         fetch('/messages', {
@@ -21,8 +18,7 @@ function MessageInputForm(){
                 if (res.status == 201) {
                     res.json().then(data => {
                         setMessages(messages => ([...messages, data]))
-                        console.log("posted message: ", data)
-                        console.log("current", messages)
+                        setSending(false)
                     })
                 }
             })
@@ -30,24 +26,22 @@ function MessageInputForm(){
 
     function handleSubmit(e){
         e.preventDefault()
-
+        setSending(true)
         if(me && they){
-            updateMessages(newMessage)
-
+            updateMessages({...senderAndReceiver, content: messageContent})
         }
-
     }
 
     function handleChange(e){
-        setNewMessage(() => ({...defaultState, [e.target.name]: e.target.value}))
+        setMessageContent(e.target.value)
     }
 
 
     return (
         <div className="message-input">
             <form onSubmit={handleSubmit}>
-                <textarea onChange={handleChange} name="content" value={newMessage.content}/>
-                <button className="btn">Send</button>
+                <textarea onChange={handleChange} name="content" value={messageContent}/>
+                <button className="btn">{sending? "Sending..." : "Send"}</button>
             </form>
         </div>
     )

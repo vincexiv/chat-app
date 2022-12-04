@@ -2,7 +2,11 @@
     display: flex;
     width: 100%;
     margin: 0.2rem;
-    /* background-color: red; */
+    cursor: pointer;
+}
+
+.full-name:hover{
+    background-color: green;
 }
 
 .full-name {

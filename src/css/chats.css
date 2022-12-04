@@ -1,6 +1,6 @@
-.chats {
-    /* width: calc(min(20rem, 50%)); */
-    /* width: calc(62% - 2rem); */
+.chats::before {
+    display: block;
+    content: "";
     height: calc(100vh - 27rem);
     background-color: rgba(0, 0, 0, 0.5);
     padding-top: 1rem;
