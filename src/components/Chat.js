@@ -7,8 +7,14 @@ function Chat({message}){
     console.log("message and me", message.id, me.id)
 
     return (
-        <div className="message">
-            <p className={message.sender == me.id? "sending": "receiving"}>{message.content}</p>
+        <div className="message-container">
+            <div className="message">
+                <div className={message.sender == me.id? "sending": "receiving"}>
+                    <div className="dummy-before"></div>
+                    <div className="content">{message.content}</div>
+                    <div className="dummy-after"></div>
+                </div>
+            </div>
         </div>
     )
 }
