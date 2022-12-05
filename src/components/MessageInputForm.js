@@ -19,6 +19,7 @@ function MessageInputForm(){
                     res.json().then(data => {
                         setMessages(messages => ([...messages, data]))
                         setSending(false)
+                        setMessageContent("")
                     })
                 }
             })

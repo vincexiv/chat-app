@@ -6,7 +6,7 @@ function Chat({message}){
     const [messageContent, setMessageContent] = useState(message.content)
     const [editing, setEditing] = useState(false)
     const messageContainerRef = useRef(null)
-    const {me} = useContext(userDetails)
+    const {me, messages, setMessages} = useContext(userDetails)
 
     function handleOnClick(e){
         const optionsDiv = e.target.parentElement.querySelector('.options')
@@ -17,11 +17,10 @@ function Chat({message}){
         setMessageContent(e.target.value)
     }
 
-    function handleEdit(e){
-        const messageEditForm = e.target.parentElement.parentElement.querySelector('form')
-        console.log(messageEditForm)
+    function handleEdit(){
+        const messageEditForm = messageContainerRef.current.querySelector('form')
 
-        const messageBeingEdited = e.target.parentElement.parentElement.querySelector('.content.sent')
+        const messageBeingEdited = messageContainerRef.current.querySelector('.content.sent')
         messageBeingEdited.classList.add("display-none")
 
         messageEditForm.classList.remove('display-none')
@@ -30,14 +29,57 @@ function Chat({message}){
 
     function goBack(e){
         setEditing(editing => !editing)
-        messageContainerRef.current.querySelector('form').classList.add('display-none')
-        messageContainerRef.current.querySelector('.message .options').classList.add('display-none')
-        messageContainerRef.current.querySelector('.content.sent').classList.remove('display-none')
+        resetDisplayedItems()
         setMessageContent(message.content)
     }
 
-    function handleDelete(){
+    function resetDisplayedItems(){
+        messageContainerRef.current.querySelector('form').classList.add('display-none')
+        messageContainerRef.current.querySelector('.message .options').classList.add('display-none')
+        messageContainerRef.current.querySelector('.content.sent').classList.remove('display-none')
+    }
 
+    function handleDelete(){
+        fetch(`/messages/${message.id}`, {
+            method: 'DELETE',
+            headers: {"Content-Type": "application/json", "Accept": "application/json"},
+        })
+        .then(res => {
+            if(res.status == 204){
+                setMessages(messages.filter(showingMessage => message.id != showingMessage.id))
+            }
+        })
+    }
+
+    function updateMessage(){
+        fetch(`/messages/${message.id}`, {
+            method: 'PATCH',
+            headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        })
+            .then(res => {
+                if (res.status == 200) {
+                    res.json().then(data => {
+                        setMessages(messages => messages.map(message => {
+                            if(data.id != message.id){
+                                return message
+                            }else{
+                                return data
+                            }
+                        }))
+                        setEditing(editing => !editing)
+                        resetDisplayedItems()
+                    })
+                }
+            })
+    }
+
+    function submitEdit(e){
+        e.preventDefault()
+        updateMessage()
+    }
+
+    function submitFromSendButton(){
+        updateMessage()
     }
 
     return (
@@ -48,15 +90,13 @@ function Chat({message}){
                     <div>
                         <div className="content sent" onClick={handleOnClick}>{messageContent}</div>
 
-                        <div>
-                            <form className="display-none" >
-                                <input
-                                    type="text"
-                                    className="content"
-                                    onChange={handleMessageChange}
-                                    value={messageContent}></input>
-                            </form>
-                        </div>
+                        <form className="display-none" onSubmit={submitEdit}>
+                            <input
+                                type="text"
+                                className="content"
+                                onChange={handleMessageChange}
+                                value={messageContent}></input>
+                        </form>
 
                         <div className="options display-none">
                             <button
@@ -67,7 +107,7 @@ function Chat({message}){
 
                             <button
                                 className="edit"
-                                onClick={handleEdit}>
+                                onClick={editing ? () => submitFromSendButton() : () => handleEdit()}>
                                     {editing? "Send": "Edit"}
                             </button>
                         </div>
