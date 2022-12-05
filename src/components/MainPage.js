@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useContext, useEffect} from "react";
 import { userDetails } from "./UserDetailsContextProvider";
 import {useNavigate} from 'react-router-dom'
 import Contacts from "./Contacts";
@@ -13,19 +13,6 @@ function MainPage(){
 
     useEffect(()=>{
         rememberMe()
-        // fetch('/me')
-        // .then(res => {
-        //     if(res.status == 200){
-        //         res.json().then(data => {
-        //             setMe(data)
-        //             getAllUsers()
-        //             setThey(JSON.parse(localStorage.getItem("they")))
-        //             setMessages(data.messages)
-        //         })
-        //     }else{
-        //         navigate('/login')
-        //     }
-        // })
     }, [])
     
     function rememberMe() {

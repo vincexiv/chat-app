@@ -8,6 +8,21 @@
 
 .app-name {
     font-weight: 700;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.app-name .first-part {
+    color: green;
+}
+
+.app-name .second-part {
+    color: var(--secondary-color);
+}
+
+.app-name .first-t, .app-name .second-t {
+    box-shadow: 0 0 2rem var(--secondary-color);
+    background-color: transparent;
 }
 
 .container ul {
@@ -16,7 +31,16 @@
 }
 
 .container a {
+    padding: 0.4rem 0.8rem 0.4rem 0.8rem;
+    border-radius: 1rem;
     text-decoration: none;
+    color: green;
+}
+
+.container a:hover {
+    cursor: pointer;
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
 }
 
 .container li:nth-child(2){

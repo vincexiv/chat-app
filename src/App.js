@@ -9,7 +9,7 @@ import {Routes, Route} from 'react-router-dom'
 function App(){
   return (
     <>
-      <Navbar loggedIn={false}/>
+      <Navbar />
       <Background />
 
       <Routes>

@@ -15,7 +15,7 @@ function Signup(){
     }
     const [userInfo, setUserInfo] = useState(defaultState)
     const [submitting, setSubmitting] = useState(false)
-    const {setMessages, setMe, setAllUsers} = useContext(userDetails)
+    const {setMessages, setMe, setAllUsers, setLoggedIn} = useContext(userDetails)
     const navigate = useNavigate()
 
     function handleInputChange(e){
@@ -38,6 +38,7 @@ function Signup(){
                     setMessages(data.messages)
                     setSubmitting(false)
                     getAllUsers()
+                    setLoggedIn(true)
                     navigate('/home')
                 })
             }else if (res.status == 422){
