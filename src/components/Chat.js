@@ -44,11 +44,6 @@ function Chat({message}){
             method: 'DELETE',
             headers: {"Content-Type": "application/json", "Accept": "application/json"},
         })
-        .then(res => {
-            if(res.status == 204){
-                setMessages(messages.filter(showingMessage => message.id != showingMessage.id))
-            }
-        })
     }
 
     function updateMessage(){
@@ -59,13 +54,6 @@ function Chat({message}){
             .then(res => {
                 if (res.status == 200) {
                     res.json().then(data => {
-                        setMessages(messages => messages.map(message => {
-                            if(data.id != message.id){
-                                return message
-                            }else{
-                                return data
-                            }
-                        }))
                         setEditing(editing => !editing)
                         resetDisplayedItems()
                     })
