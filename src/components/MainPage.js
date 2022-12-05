@@ -12,20 +12,41 @@ function MainPage(){
     const navigate = useNavigate()
 
     useEffect(()=>{
-        fetch('/me')
-        .then(res => {
-            if(res.status == 200){
-                res.json().then(data => {
-                    setMe(data)
-                    getAllUsers()
-                    setThey(JSON.parse(localStorage.getItem("they")))
-                    setMessages(data.messages)
-                })
-            }else{
-                navigate('/login')
-            }
-        })
+        rememberMe()
+        // fetch('/me')
+        // .then(res => {
+        //     if(res.status == 200){
+        //         res.json().then(data => {
+        //             setMe(data)
+        //             getAllUsers()
+        //             setThey(JSON.parse(localStorage.getItem("they")))
+        //             setMessages(data.messages)
+        //         })
+        //     }else{
+        //         navigate('/login')
+        //     }
+        // })
     }, [])
+    
+    function rememberMe() {
+        const intervalId = setInterval(() => {
+            fetch('/me')
+                .then(res => {
+                    if (res.status == 200) {
+                        res.json().then(data => {
+                            setMe(data)
+                            getAllUsers()
+                            setThey(JSON.parse(localStorage.getItem("they")))
+                            setMessages(data.messages)
+                        })
+                    } else {
+                        navigate('/login')
+                    }
+                })
+        }, 1000)
+
+        localStorage.setItem("intervalId", intervalId)
+    }
 
     function getAllUsers() {
         fetch('/users')

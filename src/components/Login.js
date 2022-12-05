@@ -10,7 +10,7 @@ function Login() {
     }
     const [userInfo, setUserInfo] = useState(defaultState)
     const [submitting, setSubmitting] = useState(false)
-    const { setMe, setAllUsers, setMessages } = useContext(userDetails)
+    const { setMe, setThey, setAllUsers, setMessages } = useContext(userDetails)
     const navigate = useNavigate()
 
     function handleInputChange(e) {
@@ -32,6 +32,7 @@ function Login() {
                         setSubmitting(false)
                         setAllUsers(getAllUsers())
                         navigate('/home')
+                        setUpPeriodicUpdating()
                     })
                 } else if (res.status == 401) {
                     alert("Invalid username or password!")
@@ -40,6 +41,26 @@ function Login() {
                 }
                 setSubmitting(false)
             })  
+    }
+
+    function setUpPeriodicUpdating(){
+        const intervalId = setInterval(()=>{
+            fetch('/me')
+                .then(res => {
+                    if (res.status == 200) {
+                        res.json().then(data => {
+                            setMe(data)
+                            getAllUsers()
+                            setThey(JSON.parse(localStorage.getItem("they")))
+                            setMessages(data.messages)
+                        })
+                    } else {
+                        navigate('/login')
+                    }
+                })
+        }, 1000)
+
+        localStorage.setItem("intervalId", intervalId)
     }
 
     function getAllUsers(){
