@@ -34,3 +34,7 @@
 .btn:hover {
   opacity: 0.8;
 }
+
+.display-none {
+  display: none;
+}

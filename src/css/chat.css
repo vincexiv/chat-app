@@ -1,13 +1,13 @@
 .message-container .message {
     width: calc(min(31rem, 100%));
     margin: 0.1rem;
-    color: white;
 }
 
 .message .sending {
     width: calc(min(max-content, 100%));
     display: flex;
     justify-content: space-between;
+    cursor: pointer;
 }
 
 .message .receiving {
@@ -27,15 +27,71 @@
 .message .sending .content{
     text-align: right;
     border-radius: 2rem 0 2rem 2rem;
-    border: solid 0.1rem rgba(231, 54, 53, 0.7);
+    border: solid 0.1rem green;
     font-size: 0.6rem;
     padding: 0.5rem 0.7rem 0.5rem 0.5rem;
+    background-color: transparent;
+    color: white;
+    outline: green;
 }
 
 .message .receiving .content{
     text-align: left;
     border-radius: 0 2rem 2rem 2rem;
-    border: solid 0.1rem rgba(231, 54, 53, 0.7);
+    border: solid 0.1rem green;
     font-size: 0.6rem;
     padding: 0.5rem 0.5rem 0.5rem 0.7rem;
+    background-color: transparent;
+    color: white;
+    outline: none;
+}
+
+.message-container .display-none {
+    display: none;
+}
+
+.message .receiving .options {
+    display: none;
+}
+
+.message .options {
+    display: flex;
+    justify-content: end;
+}
+
+.message button {
+    background-color: green;
+    outline: none;
+    border: none;
+    color: white;
+    padding: 0.2rem;
+    min-width: 3rem;
+    font-size: 0.6rem;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+
+.message button:hover {
+    background-color: rgba(231, 54, 53, 0.7)
+}
+
+.message .options button.back-delete{
+    margin: 0.2rem 0.7rem 0.2rem 0.2rem;
+}
+
+.message .options button.edit,
+.message .options button.go-back {
+    margin: 0.2rem 0.2rem 0.2rem 0.2rem;
+}
+
+.message .display-none {
+    display: none;
+}
+
+.message .receiving form {
+    display: none;
+}
+
+.message .sending input.content {
+    border: solid 0.1rem rgba(231, 54, 53, 0.7);
 }
