@@ -33,6 +33,7 @@
 .container a {
     padding: 0.4rem 0.8rem 0.4rem 0.8rem;
     border-radius: 1rem;
+    font-size: 0.9rem;
     text-decoration: none;
     color: green;
 }
@@ -41,9 +42,4 @@
     cursor: pointer;
     color: var(--primary-color);
     background-color: var(--secondary-color);
-}
-
-.container li:nth-child(2){
-    padding-left: 0.6rem;
-    padding-right: 0.6rem;
 }

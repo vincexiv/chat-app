@@ -32,14 +32,14 @@ function SearchUser({onChatWith}){
     return (
         <div className="search-user">
             <form onSubmit={handleSubmit}>
-                <label htmlFor="content">Search User <span>(by username)</span></label>
-                <input onChange={handleChange} name="content" value={user} />
+                <label htmlFor="content">Search User</label>
+                <input onChange={handleChange} name="content" value={user} placeholder="search by username"/>
             </form>
             <div className="matched-users">
                 {
                     matchedUsers.map(user => (
                         <div key={user.id} className="full-name" onClick={()=>onChatWith(user.id)}>
-                            <p>{user.full_name}</p>
+                            <p>{user.full_name}</p><p>@{user.username}</p>
                         </div>
                     )).slice(0, 6)
                 }
