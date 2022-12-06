@@ -1,6 +1,7 @@
 import React, {useState, useContext, useEffect} from "react";
 import { userDetails } from "./UserDetailsContextProvider";
 import Contact from "./Contact"
+import SearchUser from "./SearchUser";
 import "../css/contacts.css"
 
 function Contacts({onChatWith}){
@@ -62,6 +63,7 @@ function Contacts({onChatWith}){
     return (
         <div className="contacts">
             {contactComponents}
+            <SearchUser />
         </div>
     )
 }

@@ -1,0 +1,51 @@
+.search-user {
+    margin-top: 0.7rem;
+}
+
+.search-user form {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.search-user h1 {
+    color: white;
+    margin-top: 1.3rem;
+    margin-bottom: 0.8rem;
+    margin-left: 1.7rem;
+}
+
+.search-user input {
+    border-radius: 1rem;
+    margin: 0.2rem;
+    outline: none;
+    border: solid var(--secondary-color) 0.1rem;
+    padding: 0.5rem;
+        margin-left: 1.7rem;
+    color: white;
+    font-size: 0.7rem;
+
+    background-color: transparent;
+}
+
+.search-user .matched-users {
+    overflow: hidden;
+    font-size: 0.7rem;
+    margin-top: 0.5rem;
+}
+
+.search-user .full-name {
+    background-color: transparent;
+    width: 80%;
+    color: green;
+    /* display: flex; */
+    /* flex-direction: column;
+    justify-content: center; */
+    margin: 0 0.1rem 0 0.1rem;
+    margin-left: 1.7rem;
+    cursor: pointer;
+    border-bottom: 0.1rem solid rgba(255, 255, 255, 0.5);
+    font-size: 10rem;
+}
+

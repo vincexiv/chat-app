@@ -3,13 +3,14 @@
     width: 100%;
     margin: 0.2rem;
     cursor: pointer;
+    margin-left: 1rem;
 }
 
-.full-name:hover{
+.contact .full-name:hover{
     background-color: green;
 }
 
-.full-name {
+.contact .full-name {
     background-color: transparent;
     /* width: 20rem; */
     width : 80%;
@@ -22,7 +23,7 @@
     border-bottom: 0.1rem solid rgba(255, 255, 255, 0.5);
 }
 
-.full-name h1 {
+.contact .full-name h1 {
     color: var(--secondary-color);
 }
 
