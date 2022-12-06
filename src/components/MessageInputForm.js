@@ -41,7 +41,7 @@ function MessageInputForm(){
     return (
         <div className="message-input">
             <form onSubmit={handleSubmit}>
-                <input onChange={handleChange} name="content" value={messageContent}/>
+                <input onChange={handleChange} name="content" value={messageContent} placeholder="type your message here"/>
                 <button className="btn">{sending? "Sending..." : "Send"}</button>
             </form>
         </div>
