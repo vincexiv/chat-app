@@ -9,9 +9,14 @@ import "../css/main-body.css"
 
 function MainPage(){
     const {me, setMe, they, setThey, setAllUsers, allUsers, setMessages} = useContext(userDetails)
-    const [desktopView, setDesktopView] = useState(true)
+    const [desktopView, setDesktopView] = useState(document.documentElement.clientWidth > 750)
     const [showItem, setShowItem] = useState({contacts: false, chats: true})
     const navigate = useNavigate()
+
+    useEffect(() => {
+        clearInterval(JSON.parse(localStorage.getItem("intervalId")))
+        rememberMe()
+    }, [])
 
     function handleResize(){
         const clientWidth = document.documentElement.clientWidth
@@ -24,12 +29,6 @@ function MainPage(){
     }
 
     window.addEventListener('resize', handleResize)
-    
-
-    useEffect(()=>{
-        clearInterval(JSON.parse(localStorage.getItem("intervalId")))
-        rememberMe()
-    }, [])
     
     function rememberMe() {
         let loggedOut = false

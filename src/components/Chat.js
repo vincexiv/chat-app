@@ -50,6 +50,7 @@ function Chat({message}){
         fetch(`/messages/${message.id}`, {
             method: 'PATCH',
             headers: { "Content-Type": "application/json", "Accept": "application/json" },
+            body: JSON.stringify(messageContent)
         })
             .then(res => {
                 if (res.status == 200) {

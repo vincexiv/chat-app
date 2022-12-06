@@ -12,7 +12,7 @@ function Chats(){
         chats = chats.map(message => <Chat key={message.id} message={message} />)
     }
     
-    if (they.id == me.id) {
+    if (they && me && they.id == me.id) {
         chats = messages.filter(message => message.sender == me.id && message.receiver == me.id)
         chats = chats.map(message => <Chat key={message.id} message={message} />)
     }
