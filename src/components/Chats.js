@@ -4,12 +4,16 @@ import {userDetails} from "./UserDetailsContextProvider"
 import "../css/chats.css"
 
 function Chats(){
-    const {messages, they} = useContext(userDetails)
-
+    const {messages, me, they} = useContext(userDetails)
     let chats = []
     
     if(they){
         chats = messages.filter(message => message.sender == they.id || message.receiver == they.id)
+        chats = chats.map(message => <Chat key={message.id} message={message} />)
+    }
+    
+    if (they.id == me.id) {
+        chats = messages.filter(message => message.sender == me.id && message.receiver == me.id)
         chats = chats.map(message => <Chat key={message.id} message={message} />)
     }
 

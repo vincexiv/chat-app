@@ -32,7 +32,7 @@ function SearchUser({onChatWith}){
     return (
         <div className="search-user">
             <form onSubmit={handleSubmit}>
-                <label htmlFor="content">Search User</label>
+                <label htmlFor="content">Search User <span>(by username)</span></label>
                 <input onChange={handleChange} name="content" value={user} />
             </form>
             <div className="matched-users">

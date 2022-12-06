@@ -22,7 +22,7 @@ function Contacts({onChatWith, showContacts, desktopView}){
     function uniqueContacts(contactArray){
         let existingContactIds = []
         return contactArray.filter(contact => {
-            if (!existingContactIds.includes(contact.userId)){
+            if (!existingContactIds.includes(contact.userId) && contact.userId != me.id){
                 existingContactIds.push(contact.userId)
                 return true
             }else{
