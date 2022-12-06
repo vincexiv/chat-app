@@ -9,7 +9,6 @@ function Chats(){
     let chats = []
     
     if(they){
-
         chats = messages.filter(message => message.sender == they.id || message.receiver == they.id)
         chats = chats.map(message => <Chat key={message.id} message={message} />)
     }

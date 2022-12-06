@@ -5,7 +5,7 @@ import SearchUser from "./SearchUser";
 import "../css/contacts.css"
 
 function Contacts({onChatWith}){
-    const {me, setMe} = useContext(userDetails)
+    const {me} = useContext(userDetails)
     const [contacts, setContacts] = useState([])
 
     useEffect(() => {
@@ -14,7 +14,6 @@ function Contacts({onChatWith}){
                 let contactArray = createContacts(me.messages)
                 contactArray = filterOut(contactArray, me)
                 contactArray = uniqueContacts(contactArray)
-
                 return contactArray
             })
         }
