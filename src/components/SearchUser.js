@@ -2,7 +2,7 @@ import React, {useState, useContext} from "react";
 import { userDetails } from "./UserDetailsContextProvider";
 import "../css/search-user.css"
 
-function SearchUser(){
+function SearchUser({onChatWith}){
     const {allUsers} = useContext(userDetails)
     const [user, setUser] = useState("")
     const [matchedUsers, setMatchedUsers] = useState([])
@@ -25,7 +25,7 @@ function SearchUser(){
             <div className="matched-users">
                 {
                     matchedUsers.map(user => (
-                        <div key={user.id} className="full-name">
+                        <div key={user.id} className="full-name" onClick={()=>onChatWith(user.id)}>
                             <p>{user.full_name}</p>
                         </div>
                     )).slice(0, 6)

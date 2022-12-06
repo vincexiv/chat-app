@@ -63,7 +63,7 @@ function Contacts({onChatWith}){
     return (
         <div className="contacts">
             {contactComponents.slice(0, 3)}
-            <SearchUser />
+            <SearchUser onChatWith={onChatWith}/>
         </div>
     )
 }
