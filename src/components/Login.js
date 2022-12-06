@@ -24,7 +24,7 @@ function Login() {
                 })
             }
         })
-    })
+    }, [])
 
     function handleInputChange(e) {
         setUserInfo(userInfo => ({ ...userInfo, [e.target.name]: e.target.value }))
