@@ -19,7 +19,8 @@ function Navbar(){
         .then(res => {
             if(res.status == 204){
                 clearInterval(JSON.parse(localStorage.getItem("intervalId")))
-                clearInterval(JSON.parse(localStorage.getItem("they")))
+                localStorage.removeItem("they")
+                localStorage.removeItem("intervalId")
                 navigate('/login')
             }
         })

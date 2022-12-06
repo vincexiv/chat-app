@@ -9,7 +9,13 @@
     justify-content: space-between;
 }
 
-.search-user h1 {
+.search-user form {
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start;
+}
+
+.search-user label {
     color: white;
     margin-top: 1.3rem;
     margin-bottom: 0.8rem;
