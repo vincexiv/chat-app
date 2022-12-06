@@ -12,10 +12,13 @@ function MainPage(){
     const navigate = useNavigate()
 
     useEffect(()=>{
+        clearInterval(JSON.parse(localStorage.getItem("intervalId")))
         rememberMe()
     }, [])
     
     function rememberMe() {
+        let loggedOut = false
+
         const intervalId = setInterval(() => {
             fetch('/me')
                 .then(res => {
@@ -27,12 +30,13 @@ function MainPage(){
                             setMessages(data.messages)
                         })
                     } else {
+                        loggedOut = true
                         navigate('/login')
                     }
                 })
         }, 1000)
 
-        localStorage.setItem("intervalId", intervalId)
+        loggedOut ? clearInterval(intervalId) :  localStorage.setItem("intervalId", intervalId)
     }
 
     function getAllUsers() {

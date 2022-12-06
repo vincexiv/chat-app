@@ -15,7 +15,7 @@ function Signup(){
     }
     const [userInfo, setUserInfo] = useState(defaultState)
     const [submitting, setSubmitting] = useState(false)
-    const {setMessages, setMe, setAllUsers, setLoggedIn} = useContext(userDetails)
+    const {setMessages, setMe, setAllUsers, setThey, setLoggedIn} = useContext(userDetails)
     const navigate = useNavigate()
 
     function handleInputChange(e){
@@ -39,6 +39,7 @@ function Signup(){
                     setSubmitting(false)
                     getAllUsers()
                     setLoggedIn(true)
+                    setUpPeriodicUpdating()
                     navigate('/home')
                 })
             }else if (res.status == 422){
@@ -48,6 +49,26 @@ function Signup(){
             }
             setSubmitting(false)
         })
+    }
+
+    function setUpPeriodicUpdating() {
+        const intervalId = setInterval(() => {
+            fetch('/me')
+                .then(res => {
+                    if (res.status == 200) {
+                        res.json().then(data => {
+                            setMe(data)
+                            getAllUsers()
+                            setThey(JSON.parse(localStorage.getItem("they")))
+                            setMessages(data.messages)
+                        })
+                    } else {
+                        navigate('/login')
+                    }
+                })
+        }, 1000)
+
+        localStorage.setItem("intervalId", intervalId)
     }
 
     function getAllUsers() {
