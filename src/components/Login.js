@@ -73,7 +73,7 @@ function Login() {
                 })
         }, 1000)
 
-        localStorage.setItem("intervalId", intervalId)
+        localStorage.setItem("intervalId", JSON.stringify(intervalId))
     }
 
     function getAllUsers(){

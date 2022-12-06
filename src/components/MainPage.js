@@ -33,6 +33,7 @@ function MainPage(){
     
     function rememberMe() {
         let loggedOut = false
+        clearInterval(JSON.parse(localStorage.getItem("intervalId")))
 
         const intervalId = setInterval(() => {
             fetch('/me')
@@ -51,7 +52,7 @@ function MainPage(){
                 })
         }, 1000)
 
-        loggedOut ? clearInterval(intervalId) :  localStorage.setItem("intervalId", intervalId)
+        loggedOut ? clearInterval(intervalId) :  localStorage.setItem("intervalId", JSON.stringify(intervalId))
     }
 
     function getAllUsers() {
