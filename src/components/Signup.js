@@ -38,7 +38,6 @@ function Signup(){
                     setMessages(data.messages)
                     setSubmitting(false)
                     getAllUsers()
-                    setLoggedIn(true)
                     setUpPeriodicUpdating()
                     navigate('/home')
                 })

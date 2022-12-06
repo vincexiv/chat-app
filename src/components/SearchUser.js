@@ -5,7 +5,8 @@ import "../css/search-user.css"
 function SearchUser({onChatWith}){
     const {allUsers} = useContext(userDetails)
     const [user, setUser] = useState("")
-    const [matchedUsers, setMatchedUsers] = useState([])
+    const [matchedUsers, setMatchedUsers] = useState(
+        allUsers? allUsers.slice(0, 6): [])
 
 
     function handleChange(e){
@@ -16,6 +17,7 @@ function SearchUser({onChatWith}){
     function handleSubmit(){
 
     }
+
     return (
         <div className="search-user">
             <form onSubmit={handleSubmit}>
