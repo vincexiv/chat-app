@@ -14,8 +14,9 @@ function SearchUser({onChatWith}){
         setMatchedUsers(allUsers.filter(user => user.username.includes(e.target.value)))
     }
 
-    function handleSubmit(){
-
+    function handleSubmit(e){
+        e.preventDefault()
+        setUser("")
     }
 
     return (

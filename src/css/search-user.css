@@ -28,11 +28,12 @@
     outline: none;
     border: solid var(--secondary-color) 0.1rem;
     padding: 0.5rem;
-        margin-left: 1.7rem;
+    margin-left: 1.7rem;
     color: white;
     font-size: 0.7rem;
 
     background-color: transparent;
+    width: 80%;
 }
 
 .search-user .matched-users {
@@ -45,9 +46,6 @@
     background-color: transparent;
     width: 80%;
     color: green;
-    /* display: flex; */
-    /* flex-direction: column;
-    justify-content: center; */
     margin: 0 0.1rem 0 0.1rem;
     margin-left: 1.7rem;
     cursor: pointer;

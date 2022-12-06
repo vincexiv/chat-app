@@ -6,13 +6,17 @@
     align-items: center;
 }
 
-img {
+.now-chatting img {
     width: 3rem;
     height: 3rem;
+    min-width: 3rem;
+    min-height: 3rem;
     padding: 0.3rem;
     background-color: green;
     border-radius: 50%;
     margin: 0.5rem;
+    font-size: 1rem;
+    overflow: hidden;
 }
 
 h1, p {
@@ -24,10 +28,18 @@ h1 {
     color: var(--primary-color);
 }
 
+.detials p {
+    
+}
+
 .details {
     display: flex;
     justify-content: space-between;
     min-height: 4rem;
+}
+
+.details.me, .details.they {
+    max-width: 50%;
 }
 
 .they-details, .me-details {
