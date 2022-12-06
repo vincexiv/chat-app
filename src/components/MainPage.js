@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import { userDetails } from "./UserDetailsContextProvider";
 import {useNavigate} from 'react-router-dom'
 import Contacts from "./Contacts";
@@ -9,7 +9,22 @@ import "../css/main-body.css"
 
 function MainPage(){
     const {me, setMe, they, setThey, setAllUsers, allUsers, setMessages} = useContext(userDetails)
+    const [desktopView, setDesktopView] = useState(true)
+    const [showItem, setShowItem] = useState({contacts: false, chats: true})
     const navigate = useNavigate()
+
+    function handleResize(){
+        const clientWidth = document.documentElement.clientWidth
+
+        if( clientWidth < 750){
+            setDesktopView(false)
+        }else {
+            setDesktopView(true)
+        }
+    }
+
+    window.addEventListener('resize', handleResize)
+    
 
     useEffect(()=>{
         clearInterval(JSON.parse(localStorage.getItem("intervalId")))
@@ -56,13 +71,28 @@ function MainPage(){
             return newThey
         })
     }
+
+    function toggleItemToShow(){
+        setShowItem(showItem => {
+            return {
+                contacts: !showItem.contacts,
+                chats: !showItem.chats
+            }
+        })
+    }
     
     return (
         <>
-            <NowChatting me={me} they={they}/>
-            <div className="container main-body">
-                <Contacts onChatWith={handleChatWith}/>
-                <ChatsContainer />
+            <NowChatting me={me} they={they} desktopView={desktopView}/>
+
+            <div className={desktopView? "container main-body": "vertical-container main-body"}>
+                <div className={desktopView ? "display-none" : ""}>
+                    <button className="users btn" onClick={toggleItemToShow}>{showItem.chats? "Go to Users": "Go to Chats"}</button>
+                </div>
+
+                <Contacts onChatWith={handleChatWith} showContacts={showItem.contacts} desktopView={desktopView} />
+
+                <ChatsContainer showChat={showItem.chats} desktopView={desktopView} />
             </div>
         </>
     )

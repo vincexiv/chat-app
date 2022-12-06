@@ -1,7 +1,13 @@
 .main-body {
-    height: calc(100vh - 16rem);
+    min-height: calc(100vh - 16rem);
     background-image: radial-gradient(rgba(14, 42, 71, 1), rgba(14, 42, 71, 0.75));
     border: solid rgba(255, 255, 255, 0.3) 0.1rem;
     border-radius: 1rem;
     padding: 1rem;
+}
+
+.main-body .btn {
+    font-size: 0.7rem;
+    min-width: 3rem;
+    margin: 0.3rem;
 }

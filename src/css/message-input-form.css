@@ -1,5 +1,6 @@
 .message-input {
     margin-top: 0.7rem;
+    min-height: 3rem;
 }
 
 .message-input form {

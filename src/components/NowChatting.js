@@ -2,7 +2,7 @@ import React, {useContext} from "react";
 import { userDetails } from "./UserDetailsContextProvider";
 import "../css/now-chatting.css"
 
-function NowChatting(){
+function NowChatting({desktopView}){
     const {me, they} = useContext(userDetails)
 
     function shortenBio(bio){
@@ -27,7 +27,7 @@ function NowChatting(){
                 </div>
             </div>
 
-            <div className="details me">
+            <div className={desktopView ? "details me desktop-view": "display-none"}>
                 <div className="me-details">
                     <h1>{me.full_name}</h1>
                     <p>{shortenBio(me.bio)}</p>                

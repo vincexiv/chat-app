@@ -28,17 +28,13 @@ h1 {
     color: var(--primary-color);
 }
 
-.detials p {
-    
-}
-
 .details {
     display: flex;
     justify-content: space-between;
     min-height: 4rem;
 }
 
-.details.me, .details.they {
+.details.me, .details.they .desktop-view {
     max-width: 50%;
 }
 

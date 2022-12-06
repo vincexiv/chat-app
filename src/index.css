@@ -10,12 +10,16 @@
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.container {
+.container, .vertical-container {
   display: flex;
   justify-content: space-between;
   width: calc(min(60rem, 80%));
   margin: auto;
   align-items: center;
+}
+
+.vertical-container {
+  flex-direction: column;
 }
 
 .btn {
