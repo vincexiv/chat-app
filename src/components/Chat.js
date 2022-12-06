@@ -3,8 +3,9 @@ import { userDetails } from "./UserDetailsContextProvider";
 import "../css/chat.css"
 
 function Chat({message}){
-    const [messageContent, setMessageContent] = useState(message.content)
-    const [editing, setEditing] = useState(false)
+    // const [messageContent, setMessageContent] = useState(message.content)
+    // const [editing, setEditing] = useState(false)
+    const [currentState, setCurrentState] = useState({messageContent: message.content, editing: false})
     const messageContainerRef = useRef(null)
     const {me} = useContext(userDetails)
 
@@ -14,7 +15,8 @@ function Chat({message}){
     }
 
     function handleMessageChange(e){
-        setMessageContent(e.target.value)
+        // setMessageContent(e.target.value)
+        setCurrentState(currentState => ({...currentState, messageContent: e.target.value}))
     }
 
     function handleEdit(){
@@ -24,13 +26,19 @@ function Chat({message}){
         messageBeingEdited.classList.add("display-none")
 
         messageEditForm.classList.remove('display-none')
-        setEditing(editing => !editing)
+        
+        // setEditing(editing => !editing)
+        setCurrentState(currentState => ({ ...currentState, editing: !currentState.editing }))
     }
 
     function goBack(e){
-        setEditing(editing => !editing)
+        // setEditing(editing => !editing)
+        setCurrentState(currentState => ({ ...currentState, editing: !currentState.editing }))
+
         resetDisplayedItems()
-        setMessageContent(message.content)
+        // setMessageContent(message.content)
+        setCurrentState(currentState => ({ ...currentState, messageContent: message.content }))
+
     }
 
     function resetDisplayedItems(){
@@ -47,15 +55,18 @@ function Chat({message}){
     }
 
     function updateMessage(){
+
         fetch(`/messages/${message.id}`, {
             method: 'PATCH',
             headers: { "Content-Type": "application/json", "Accept": "application/json" },
-            body: JSON.stringify(messageContent)
+            body: JSON.stringify({content: currentState.messageContent})
         })
             .then(res => {
                 if (res.status == 200) {
                     res.json().then(data => {
-                        setEditing(editing => !editing)
+                        console.log({ content: currentState.messageContent })
+                        // setEditing(editing => !editing)
+                        setCurrentState(currentState => ({ ...currentState, editing: !currentState.editing }))
                         resetDisplayedItems()
                     })
                 }
@@ -77,27 +88,27 @@ function Chat({message}){
                 <div className={message.sender == me.id? "sending": "receiving"}>
                     <div className="dummy-before"></div>
                     <div>
-                        <div className="content sent" onClick={handleOnClick}>{messageContent}</div>
+                        <div className="content sent" onClick={handleOnClick}>{currentState.messageContent}</div>
 
                         <form className="display-none" onSubmit={submitEdit}>
                             <input
                                 type="text"
                                 className="content"
                                 onChange={handleMessageChange}
-                                value={messageContent}></input>
+                                value={currentState.messageContent}></input>
                         </form>
 
                         <div className="options display-none">
                             <button
                                 className="back-delete"
-                                onClick={editing? ()=>goBack(): ()=>handleDelete()}>
-                                    {editing? "Back": "Delete"}
+                                onClick={currentState.editing? ()=>goBack(): ()=>handleDelete()}>
+                                    {currentState.editing? "Back": "Delete"}
                             </button>
 
                             <button
                                 className="edit"
-                                onClick={editing ? () => submitFromSendButton() : () => handleEdit()}>
-                                    {editing? "Send": "Edit"}
+                                onClick={currentState.editing ? () => submitFromSendButton() : () => handleEdit()}>
+                                    {currentState.editing? "Send": "Edit"}
                             </button>
                         </div>
                     </div>
