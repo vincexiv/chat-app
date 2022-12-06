@@ -1,4 +1,4 @@
-import React, {useState, useContext} from "react";
+import React, {useState, useContext, useEffect} from "react";
 import {useNavigate} from 'react-router-dom'
 import {userDetails} from './UserDetailsContextProvider'
 import "../css/login-form.css"
@@ -17,6 +17,19 @@ function Signup(){
     const [submitting, setSubmitting] = useState(false)
     const {setMessages, setMe, setAllUsers, setThey, setLoggedIn} = useContext(userDetails)
     const navigate = useNavigate()
+
+    // Go to home if in session even when one pastes the path GET /login
+    useEffect(() => {
+        fetch('/me')
+            .then(res => {
+                if (res.status == 200) {
+                    res.json().then(data => {
+                        setMe(data)
+                        navigate('/home')
+                    })
+                }
+            })
+    })
 
     function handleInputChange(e){
         setUserInfo(userInfo => ({...userInfo, [e.target.name]: e.target.value}))
