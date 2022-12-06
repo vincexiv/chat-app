@@ -1,4 +1,4 @@
-import React, {useState, useContext} from "react";
+import React, {useState, useContext, useEffect} from "react";
 import { userDetails } from "./UserDetailsContextProvider";
 import "../css/search-user.css"
 
@@ -8,6 +8,16 @@ function SearchUser({onChatWith}){
     const [matchedUsers, setMatchedUsers] = useState(
         allUsers? allUsers.slice(0, 6): [])
 
+    useEffect(()=>{
+        fetch('/users')
+        .then(res => {
+            if(res.status == 200){
+                res.json().then(data => {
+                    setMatchedUsers(data.slice(0, 6))
+                })
+            }
+        })
+    }, [])
 
     function handleChange(e){
         setUser(e.target.value)
