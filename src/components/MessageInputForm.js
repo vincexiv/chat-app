@@ -3,7 +3,7 @@ import { userDetails } from "./UserDetailsContextProvider";
 import "../css/message-input-form.css"
 
 function MessageInputForm(){
-    const { me, they, messages, setMessages} = useContext(userDetails)
+    const { me, they, setMessages} = useContext(userDetails)
     const senderAndReceiver = {sender: me ? me.id : "", receiver: they? they.id : ""}
     const [sending, setSending] = useState(false)
     const [messageContent, setMessageContent] = useState("")

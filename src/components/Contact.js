@@ -10,7 +10,7 @@ function Contact({ contact, onChatWith }){
             </div>
             <div className="views">
                 <div className="view-count">
-                    <p>20</p>
+                    <p>3</p>
                 </div>
             </div>         
         </div>

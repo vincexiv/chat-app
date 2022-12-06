@@ -6,7 +6,7 @@ function Chat({message}){
     const [messageContent, setMessageContent] = useState(message.content)
     const [editing, setEditing] = useState(false)
     const messageContainerRef = useRef(null)
-    const {me, messages, setMessages} = useContext(userDetails)
+    const {me} = useContext(userDetails)
 
     function handleOnClick(e){
         const optionsDiv = e.target.parentElement.querySelector('.options')
