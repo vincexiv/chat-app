@@ -99,7 +99,7 @@ function MainPage(){
                     <button className="users btn" onClick={toggleItemToShow}>{showItem.chats? "Go to Users": "Go to Chats"}</button>
                 </div>
 
-                <Contacts onChatWith={handleChatWith} showContacts={showItem.contacts} desktopView={desktopView} />
+                <Contacts onChatWith={handleChatWith} toggleItemToShow={toggleItemToShow} showContacts={showItem.contacts} desktopView={desktopView} />
 
                 <ChatsContainer showChat={showItem.chats} desktopView={desktopView} />
             </div>
