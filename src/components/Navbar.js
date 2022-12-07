@@ -12,7 +12,7 @@ function Navbar(){
     }
 
     function logOut(){
-        fetch('https://chat-app-back-end-production.up.railway.app/logout', {
+        fetch('/logout', {
             method: 'DELETE',
             headers: {'Content-Type': 'application/json', 'Accept': 'application/json'}
         })

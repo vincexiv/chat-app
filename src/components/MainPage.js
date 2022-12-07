@@ -28,7 +28,7 @@ function MainPage(){
         }
 
         const intervalId = setInterval(() => {
-            fetch('https://chat-app-back-end-production.up.railway.app/me')
+            fetch('/me')
                 .then(res => {
                     if (res.status == 200) {
                         res.json().then(data => {
@@ -44,7 +44,7 @@ function MainPage(){
         }, 1000)
 
         return function(){
-            return clearInterval(intervalId)
+            return clearImmediate(intervalId)
         }
     }, [])
 
@@ -61,7 +61,7 @@ function MainPage(){
     window.addEventListener('resize', handleResize)
     
     function getAllUsers() {
-        fetch('https://chat-app-back-end-production.up.railway.app/users')
+        fetch('/users')
             .then(res => {
                 if (res.status == 200) {
                     res.json().then(data => {
