@@ -18,7 +18,7 @@ function Signup(){
     const {setMessages, setMe, setAllUsers, setThey, setLoggedIn} = useContext(userDetails)
     const navigate = useNavigate()
 
-    // Go to home if in session even when one pastes the path GET /login
+    // Go to home if in session even when one pastes the path GET /signup
     useEffect(() => {
         fetch('/me')
             .then(res => {
@@ -29,7 +29,7 @@ function Signup(){
                     })
                 }
             })
-    })
+    }, [])
 
     function handleInputChange(e){
         setUserInfo(userInfo => ({...userInfo, [e.target.name]: e.target.value}))

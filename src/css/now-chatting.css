@@ -45,3 +45,7 @@ h1 {
 .me-details {
     text-align: right;
 }
+
+.now-chatting img.alt {
+    font-size: 0.5rem;
+}

@@ -20,10 +20,10 @@ function NowChatting({desktopView}){
     return (
         <div className="now-chatting container">
             <div className="details they">
-                <img src={they? they.profile_picture: null} alt={they? they.full_name: null}/>
+                <img src={they? they.profile_picture: me.profile_picture} alt={they? they.full_name: me.full_name}/>
                 <div className="they-details">
-                    <h1>{they? they.full_name: null}</h1>
-                    <p>{they ? shortenBio(they.bio): null}</p>
+                    <h1>{they? they.full_name: me.full_name}</h1>
+                    <p>{they ? shortenBio(they.bio): me.bio}</p>
                 </div>
             </div>
 
