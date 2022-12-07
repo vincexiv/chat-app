@@ -22,7 +22,7 @@ function Signup(){
     useEffect(() => {
         fetch('https://chat-app-back-end-production.up.railway.app/me')
             .then(res => {
-                if (res.status == 200) {
+                if (res.status === 200) {
                     res.json().then(data => {
                         setMe(data)
                         navigate('/home')
@@ -45,7 +45,7 @@ function Signup(){
             body: JSON.stringify(userInfo)
         })
         .then(res => {
-            if(res.status == 201){
+            if(res.status === 201){
                 res.json().then(data => {                   
                     setMe(data)
                     setMessages(data.messages)
@@ -55,7 +55,7 @@ function Signup(){
                     localStorage.setItem("intervalId", intervalId)
                     navigate('/home')
                 })
-            }else if (res.status == 422){
+            }else if (res.status === 422){
                 res.json().then(data => alert("Unable to sign in\n" + data.errors.join('\n')))
             }else {
                 alert("An error occurred. Try again later")
@@ -68,7 +68,7 @@ function Signup(){
         const intervalId = setInterval(() => {
             fetch('https://chat-app-back-end-production.up.railway.app/me')
                 .then(res => {
-                    if (res.status == 200) {
+                    if (res.status === 200) {
                         res.json().then(data => {
                             setMe(data)
                             getAllUsers()
@@ -87,7 +87,7 @@ function Signup(){
     function getAllUsers() {
         fetch('https://chat-app-back-end-production.up.railway.app/users')
             .then(res => {
-                if (res.status == 200) {
+                if (res.status === 200) {
                     res.json().then(data => setAllUsers(data))
                 }
             })

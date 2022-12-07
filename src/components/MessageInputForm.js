@@ -9,7 +9,7 @@ function MessageInputForm(){
     const [messageContent, setMessageContent] = useState("")
 
     function updateMessages(newMessage){
-        fetch('/messages', {
+        fetch('https://chat-app-back-end-production.up.railway.app/messages', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
             body: JSON.stringify(newMessage)
