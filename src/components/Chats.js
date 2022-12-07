@@ -14,14 +14,14 @@ function Chats(){
         return date1.getTime() - date2.getTime()
     }
     
-    if(they){
+    if(messages && they){
         chats = messages.filter(message => message.sender == they.id || message.receiver == they.id)
         chats = chats.sort(compareTime)
 
         chats = chats.map(message => <Chat key={message.id} message={message} />)
     }
     
-    if (they && me && they.id == me.id) {
+    if (messages && they && me && they.id == me.id) {
         chats = messages.filter(message => message.sender == me.id && message.receiver == me.id)
         chats = chats.sort(compareTime)
         chats = chats.map(message => <Chat key={message.id} message={message} />)
