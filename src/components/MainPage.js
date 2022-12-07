@@ -14,6 +14,19 @@ function MainPage(){
     const navigate = useNavigate()
 
     useEffect(() => {
+        const localStorageMe = JSON.parse(localStorage.getItem("me"))
+        const localStorageAllUsers = JSON.parse(localStorage.getItem("allUsers"))
+
+        if(localStorageMe){
+            setMe(localStorageMe)
+            setMessages(localStorageMe.messages)
+            setThey(localStorageMe)
+        }
+
+        if(localStorageAllUsers){
+            setAllUsers(localStorageAllUsers)
+        }
+
         const intervalId = setInterval(() => {
             fetch('https://chat-app-back-end-production.up.railway.app/me')
                 .then(res => {
@@ -51,7 +64,10 @@ function MainPage(){
         fetch('https://chat-app-back-end-production.up.railway.app/users')
             .then(res => {
                 if (res.status == 200) {
-                    res.json().then(data => setAllUsers(data))
+                    res.json().then(data => {
+                        setAllUsers(data)
+                        localStorage.setItem("allUsers", JSON.stringify(data))
+                    })
                 }
             })
     }

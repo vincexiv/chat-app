@@ -22,6 +22,7 @@ function Navbar(){
                 localStorage.removeItem("intervalId")
                 localStorage.removeItem("they")
                 setMe({})
+                localStorage.removeItem("me")
                 navigate('/login')
             }
         })

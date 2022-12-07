@@ -18,6 +18,7 @@ function Login() {
         .then(res => {
             if(res.status == 200){
                 res.json().then(data => {
+                    localStorage.setItem("me", JSON.stringify(data))
                     navigate('/home')
                 })
             }
@@ -38,6 +39,7 @@ function Login() {
                 if (res.status == 200) {
                     res.json().then(data => {
                         setSubmitting(false)
+                        localStorage.setItem("me", JSON.stringify(data))
                         navigate('/home')
                     })
                 } else if (res.status == 401) {
