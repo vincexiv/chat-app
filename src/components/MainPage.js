@@ -15,7 +15,7 @@ function MainPage(){
 
     useEffect(() => {
         const intervalId = setInterval(() => {
-            fetch('/me')
+            fetch('https://chat-app-back-end-production.up.railway.app/me')
                 .then(res => {
                     if (res.status == 200) {
                         res.json().then(data => {
@@ -31,7 +31,7 @@ function MainPage(){
         }, 1000)
 
         return function(){
-            return clearImmediate(intervalId)
+            return clearInterval(intervalId)
         }
     }, [])
 
@@ -48,7 +48,7 @@ function MainPage(){
     window.addEventListener('resize', handleResize)
     
     function getAllUsers() {
-        fetch('/users')
+        fetch('https://chat-app-back-end-production.up.railway.app/users')
             .then(res => {
                 if (res.status == 200) {
                     res.json().then(data => setAllUsers(data))

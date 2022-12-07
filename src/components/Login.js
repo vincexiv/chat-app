@@ -14,7 +14,7 @@ function Login() {
 
     // Go to home if in session even when one pastes the path GET /login
     useEffect(()=>{
-        fetch('/me')
+        fetch('https://chat-app-back-end-production.up.railway.app/me')
         .then(res => {
             if(res.status == 200){
                 res.json().then(data => {
@@ -29,7 +29,7 @@ function Login() {
     }
 
     function login(){
-        fetch('/login', {
+        fetch('https://chat-app-back-end-production.up.railway.app/login', {
             method: 'POST',
             headers: { "Content-Type": "application/json", "Accept": "application/json" },
             body: JSON.stringify(userInfo)
