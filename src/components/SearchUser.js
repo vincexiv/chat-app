@@ -41,7 +41,7 @@ function SearchUser({onChatWith}){
                         <div key={user.id} className="full-name" onClick={()=>onChatWith(user.id)}>
                             <p>{user.full_name}</p><p>@{user.username}</p>
                         </div>
-                    )).slice(0, 6)
+                    )).slice(0, 4)
                 }
             </div>
         </div>
