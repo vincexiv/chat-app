@@ -93,5 +93,6 @@
 }
 
 .message .sending input.content {
-    border: solid 0.1rem rgba(231, 54, 53, 0.7);
+    /* border: solid 0.1rem rgba(231, 54, 53, 0.7); */
+    border: solid 0.1rem rgba(255, 255, 0, 0.7);
 }
