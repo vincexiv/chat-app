@@ -4,7 +4,7 @@ import {useNavigate } from "react-router-dom"
 import "../css/navbar.css"
 
 function Navbar(){
-    const {me} = useContext(userDetails)
+    const {me, setMe} = useContext(userDetails)
     const navigate = useNavigate()
 
     function goHome(e){
@@ -20,6 +20,8 @@ function Navbar(){
             if(res.status == 204){
                 clearInterval(JSON.parse(localStorage.getItem("intervalId")))
                 localStorage.removeItem("intervalId")
+                localStorage.removeItem("they")
+                setMe({})
                 navigate('/login')
             }
         })

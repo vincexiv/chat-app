@@ -51,7 +51,8 @@ function Signup(){
                     setMessages(data.messages)
                     setSubmitting(false)
                     getAllUsers()
-                    setUpPeriodicUpdating()
+                    const intervalId = setUpPeriodicUpdating()
+                    localStorage.setItem("intervalId", intervalId)
                     navigate('/home')
                 })
             }else if (res.status == 422){
@@ -80,7 +81,7 @@ function Signup(){
                 })
         }, 1000)
 
-        localStorage.setItem("intervalId", intervalId)
+        return intervalId
     }
 
     function getAllUsers() {

@@ -14,9 +14,11 @@ function MainPage(){
     const navigate = useNavigate()
 
     useEffect(() => {
-        clearInterval(JSON.parse(localStorage.getItem("intervalId")))
-        rememberMe()
-    }, [])
+        if(me){
+            clearInterval(JSON.parse(localStorage.getItem("intervalId")))
+            rememberMe()
+        }
+    }, [me])
 
     function handleResize(){
         const clientWidth = document.documentElement.clientWidth
@@ -32,7 +34,6 @@ function MainPage(){
     
     function rememberMe() {
         let loggedOut = false
-        clearInterval(JSON.parse(localStorage.getItem("intervalId")))
 
         const intervalId = setInterval(() => {
             fetch('/me')
@@ -50,6 +51,7 @@ function MainPage(){
                     }
                 })
         }, 1000)
+
 
         loggedOut ? clearInterval(intervalId) :  localStorage.setItem("intervalId", JSON.stringify(intervalId))
     }

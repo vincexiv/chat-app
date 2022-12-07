@@ -45,7 +45,8 @@ function Login() {
                         setSubmitting(false)
                         setAllUsers(getAllUsers())
                         navigate('/home')
-                        setUpPeriodicUpdating()
+                        const intervalId = setUpPeriodicUpdating()
+                        localStorage.setItem("intervalId", JSON.stringify(intervalId))
                     })
                 } else if (res.status == 401) {
                     alert("Invalid username or password!")
@@ -73,7 +74,7 @@ function Login() {
                 })
         }, 1000)
 
-        localStorage.setItem("intervalId", JSON.stringify(intervalId))
+        return intervalId
     }
 
     function getAllUsers(){
