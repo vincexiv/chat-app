@@ -13,11 +13,10 @@ function App(){
       <Background />
 
       <Routes>
-        <Route path="/home" element={<MainPage />}/>
+        <Route exact path="/home" element={<MainPage />}/>
         <Route exact path="/signup" element={<Signup />}/>
         <Route exact path="/login" element={<Login />}/>
         <Route exact path="/signin" element={<Login />} />
-        <Route exat path="/logout" element={<Login />}/>
         <Route path="*" element={<Login />} />
       </Routes>
     </>
