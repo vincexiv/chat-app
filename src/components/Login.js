@@ -10,7 +10,6 @@ function Login() {
     }
     const [userInfo, setUserInfo] = useState(defaultState)
     const [submitting, setSubmitting] = useState(false)
-    const { setMe, setThey, setAllUsers, setMessages } = useContext(userDetails)
     const navigate = useNavigate()
 
     // Go to home if in session even when one pastes the path GET /login
@@ -19,7 +18,6 @@ function Login() {
         .then(res => {
             if(res.status == 200){
                 res.json().then(data => {
-                    setMe(data)
                     navigate('/home')
                 })
             }
@@ -39,14 +37,8 @@ function Login() {
             .then(res => {
                 if (res.status == 200) {
                     res.json().then(data => {
-                        setMe(data)
-                        setMessages(data.messages)
-
                         setSubmitting(false)
-                        setAllUsers(getAllUsers())
                         navigate('/home')
-                        const intervalId = setUpPeriodicUpdating()
-                        localStorage.setItem("intervalId", JSON.stringify(intervalId))
                     })
                 } else if (res.status == 401) {
                     alert("Invalid username or password!")
@@ -55,35 +47,6 @@ function Login() {
                 }
                 setSubmitting(false)
             })  
-    }
-
-    function setUpPeriodicUpdating(){
-        const intervalId = setInterval(()=>{
-            fetch('/me')
-                .then(res => {
-                    if (res.status == 200) {
-                        res.json().then(data => {
-                            setMe(data)
-                            getAllUsers()
-                            setThey(JSON.parse(localStorage.getItem("they")))
-                            setMessages(data.messages)
-                        })
-                    } else {
-                        navigate('/login')
-                    }
-                })
-        }, 1000)
-
-        return intervalId
-    }
-
-    function getAllUsers(){
-        fetch('/users')
-        .then(res => {
-            if(res.status == 200){
-                res.json().then(data => setAllUsers(data))
-            }
-        })
     }
 
     function handleSubmit(e) {

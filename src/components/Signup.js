@@ -15,7 +15,6 @@ function Signup(){
     }
     const [userInfo, setUserInfo] = useState(defaultState)
     const [submitting, setSubmitting] = useState(false)
-    const {setMessages, setMe, setAllUsers, setThey, setLoggedIn} = useContext(userDetails)
     const navigate = useNavigate()
 
     // Go to home if in session even when one pastes the path GET /signup
@@ -24,7 +23,6 @@ function Signup(){
             .then(res => {
                 if (res.status == 200) {
                     res.json().then(data => {
-                        setMe(data)
                         navigate('/home')
                     })
                 }
@@ -47,12 +45,7 @@ function Signup(){
         .then(res => {
             if(res.status == 201){
                 res.json().then(data => {                   
-                    setMe(data)
-                    setMessages(data.messages)
                     setSubmitting(false)
-                    getAllUsers()
-                    const intervalId = setUpPeriodicUpdating()
-                    localStorage.setItem("intervalId", intervalId)
                     navigate('/home')
                 })
             }else if (res.status == 422){
@@ -62,35 +55,6 @@ function Signup(){
             }
             setSubmitting(false)
         })
-    }
-
-    function setUpPeriodicUpdating() {
-        const intervalId = setInterval(() => {
-            fetch('/me')
-                .then(res => {
-                    if (res.status == 200) {
-                        res.json().then(data => {
-                            setMe(data)
-                            getAllUsers()
-                            setThey(JSON.parse(localStorage.getItem("they")))
-                            setMessages(data.messages)
-                        })
-                    } else {
-                        navigate('/login')
-                    }
-                })
-        }, 1000)
-
-        return intervalId
-    }
-
-    function getAllUsers() {
-        fetch('/users')
-            .then(res => {
-                if (res.status == 200) {
-                    res.json().then(data => setAllUsers(data))
-                }
-            })
     }
 
     function goToLoginPage(){

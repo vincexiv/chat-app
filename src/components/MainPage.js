@@ -14,11 +14,26 @@ function MainPage(){
     const navigate = useNavigate()
 
     useEffect(() => {
-        if(me){
-            clearInterval(JSON.parse(localStorage.getItem("intervalId")))
-            rememberMe()
+        const intervalId = setInterval(() => {
+            fetch('/me')
+                .then(res => {
+                    if (res.status == 200) {
+                        res.json().then(data => {
+                            setMe(data)
+                            getAllUsers()
+                            setThey(JSON.parse(localStorage.getItem("they")))
+                            setMessages(data.messages)
+                        })
+                    } else {
+                        navigate('/login')
+                    }
+                })
+        }, 1000)
+
+        return function(){
+            return clearImmediate(intervalId)
         }
-    }, [me])
+    }, [])
 
     function handleResize(){
         const clientWidth = document.documentElement.clientWidth
@@ -32,30 +47,6 @@ function MainPage(){
 
     window.addEventListener('resize', handleResize)
     
-    function rememberMe() {
-        let loggedOut = false
-
-        const intervalId = setInterval(() => {
-            fetch('/me')
-                .then(res => {
-                    if (res.status == 200) {
-                        res.json().then(data => {
-                            setMe(data)
-                            getAllUsers()
-                            setThey(JSON.parse(localStorage.getItem("they")))
-                            setMessages(data.messages)
-                        })
-                    } else {
-                        loggedOut = true
-                        navigate('/login')
-                    }
-                })
-        }, 1000)
-
-
-        loggedOut ? clearInterval(intervalId) :  localStorage.setItem("intervalId", JSON.stringify(intervalId))
-    }
-
     function getAllUsers() {
         fetch('/users')
             .then(res => {
