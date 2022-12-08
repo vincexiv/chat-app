@@ -40,7 +40,7 @@ function MainPage(){
 
         localStorage.setItem("intervalId", JSON.stringify(intervalId))
         return function(){
-            return clearImmediate(intervalId)
+            return clearInterval(intervalId)
         }
     }, [])
 
