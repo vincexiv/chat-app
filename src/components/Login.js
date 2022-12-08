@@ -40,6 +40,7 @@ function Login() {
                     res.json().then(data => {
                         setSubmitting(false)
                         localStorage.setItem("me", JSON.stringify(data))
+                        localStorage.setItem("allUsers", JSON.stringify([]))
                         navigate('/home')
                     })
                 } else if (res.status == 401) {
