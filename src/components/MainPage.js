@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from "react";
 import { userDetails } from "./UserDetailsContextProvider";
-import {useNavigate} from 'react-router-dom'
+import {json, useNavigate} from 'react-router-dom'
 import Contacts from "./Contacts";
 import ChatsContainer from "./ChatsContainer";
 import NowChatting from "./NowChatting";
@@ -17,16 +17,6 @@ function MainPage(){
         const localStorageMe = JSON.parse(localStorage.getItem("me"))
         const localStorageAllUsers = JSON.parse(localStorage.getItem("allUsers"))
 
-        if(localStorageMe){
-            setMe(localStorageMe)
-            setMessages(localStorageMe.messages)
-            setThey(localStorageMe)
-        }
-
-        if(localStorageAllUsers){
-            setAllUsers(localStorageAllUsers)
-        }
-
         const intervalId = setInterval(() => {
             fetch('/me')
                 .then(res => {
@@ -37,12 +27,18 @@ function MainPage(){
                             setThey(JSON.parse(localStorage.getItem("they")))
                             setMessages(data.messages)
                         })
-                    } else {
+                    } else if(localStorageMe && localStorageAllUsers){
+                        setMe(localStorageMe)
+                        setMessages(localStorageMe.messages)
+                        setThey(localStorageMe)
+                        setAllUsers(localStorageAllUsers)
+                    }else {
                         navigate('/login')
                     }
                 })
         }, 1000)
 
+        localStorage.setItem("intervalId", JSON.stringify(intervalId))
         return function(){
             return clearImmediate(intervalId)
         }

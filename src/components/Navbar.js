@@ -21,7 +21,6 @@ function Navbar(){
                 clearInterval(JSON.parse(localStorage.getItem("intervalId")))
                 localStorage.removeItem("intervalId")
                 localStorage.removeItem("they")
-                setMe({})
                 localStorage.removeItem("me")
                 navigate('/login')
             }
