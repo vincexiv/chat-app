@@ -18,7 +18,7 @@ function MainPage(){
         const localStorageAllUsers = JSON.parse(localStorage.getItem("allUsers"))
 
         const intervalId = setInterval(() => {
-            fetch('/me')
+            fetch('https://chat-app-back-end-production.up.railway.app/me')
                 .then(res => {
                     if (res.status == 200) {
                         res.json().then(data => {
@@ -40,7 +40,7 @@ function MainPage(){
 
         localStorage.setItem("intervalId", JSON.stringify(intervalId))
         return function(){
-            return clearImmediate(intervalId)
+            return clearInterval(intervalId)
         }
     }, [])
 
@@ -57,7 +57,7 @@ function MainPage(){
     window.addEventListener('resize', handleResize)
     
     function getAllUsers() {
-        fetch('/users')
+        fetch('https://chat-app-back-end-production.up.railway.app/users')
             .then(res => {
                 if (res.status == 200) {
                     res.json().then(data => {
