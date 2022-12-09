@@ -29,7 +29,7 @@ function NowChatting({desktopView}){
 
             <div className={desktopView ? "details me desktop-view": "display-none"}>
                 <div className="me-details">
-                    <h1>{me.full_name}</h1>
+                    <h1>{me.full_name} (You)</h1>
                     <p>{shortenBio(me.bio)}</p>                
                 </div>
                 <img src={me.profile_picture} alt={me.full_name} />

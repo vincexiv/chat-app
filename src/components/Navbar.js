@@ -50,8 +50,8 @@ function Navbar(){
                     <li><a href="#">About</a></li>
                     <li><a href="#">Contact</a></li>
 
-                    <li><a href="#" onClick={logOut}>
-                        {localStorage.getItem("loggedIn") ? "Logout" : "Login"}</a>
+                    <li>
+                        <a href="#" onClick={logOut}>{localStorage.getItem("loggedIn") ? "Logout" : "Login"}</a>
                     </li>
                 </ul>
             </div>
