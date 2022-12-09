@@ -23,6 +23,7 @@ function Navbar(){
                 localStorage.removeItem("they")
                 localStorage.removeItem("me")
                 navigate('/login')
+                setMe({})
             }
         })
     }
@@ -46,7 +47,7 @@ function Navbar(){
                     <li><a href="#">Contact</a></li>
 
                     <li><a href="#" onClick={logOut}>
-                        {me ? "Logout" : "Login"}</a>
+                        {Object.keys(me).length ? "Logout" : "Login"}</a>
                     </li>
                 </ul>
             </div>
