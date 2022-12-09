@@ -32,9 +32,7 @@ function SearchUser({ onChatWith, toggleItemToShow }){
     function maxUsersToShow(){
         return parseInt((document.documentElement.clientHeight - 200) / 180)
     }
-
-    console.log(maxUsersToShow())
-
+    
     return (
         <div className="search-user">
             <form onSubmit={handleSubmit}>
