@@ -30,8 +30,10 @@ function SearchUser({ onChatWith, toggleItemToShow }){
     }
 
     function maxUsersToShow(){
-        return parseInt((document.documentElement.clientHeight - 400) / 100)
+        return parseInt((document.documentElement.clientHeight - 200) / 180)
     }
+
+    console.log(maxUsersToShow())
 
     return (
         <div className="search-user">
