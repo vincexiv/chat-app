@@ -1,8 +1,8 @@
-import React, {useState, useContext, useEffect, useRef} from "react";
+import React, {useState, useContext, useEffect} from "react";
 import { userDetails } from "./UserDetailsContextProvider";
 import "../css/search-user.css"
 
-function SearchUser({ onChatWith, toggleItemToShow }){
+function SearchUser({ onChatWith, toggleItemToShow, clientHeight }){
     const {allUsers} = useContext(userDetails)
     const [user, setUser] = useState("")
     const [matchedUsers, setMatchedUsers] = useState(
@@ -30,11 +30,11 @@ function SearchUser({ onChatWith, toggleItemToShow }){
     }
 
     function maxUsersToShow(){
-        return parseInt((document.documentElement.clientHeight - 200) / 180)
+        return parseInt((clientHeight - 400) / 35)
     }
-    
+
     return (
-        <div className="search-user">
+        <div className="search-user" >
             <form onSubmit={handleSubmit}>
                 <label htmlFor="content">Search User</label>
                 <input onChange={handleChange} name="content" value={user} placeholder="search by username"/>

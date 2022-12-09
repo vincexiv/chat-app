@@ -10,6 +10,7 @@ import "../css/main-body.css"
 function MainPage(){
     const {me, setMe, they, setThey, setAllUsers, allUsers, setMessages} = useContext(userDetails)
     const [desktopView, setDesktopView] = useState(document.documentElement.clientWidth > 750)
+    const [clientHeight, setClientHeight] = useState(document.documentElement.clientHeight)
     const [showItem, setShowItem] = useState({contacts: false, chats: true})
     const navigate = useNavigate()
 
@@ -97,7 +98,12 @@ function MainPage(){
                     <button className="users btn" onClick={toggleItemToShow}>{showItem.chats? "Go to Users": "Go to Chats"}</button>
                 </div>
 
-                <Contacts onChatWith={handleChatWith} toggleItemToShow={toggleItemToShow} showContacts={showItem.contacts} desktopView={desktopView} />
+                <Contacts
+                    onChatWith={handleChatWith}
+                    toggleItemToShow={toggleItemToShow}
+                    showContacts={showItem.contacts}
+                    desktopView={desktopView}
+                    clientHeight={clientHeight}/>
 
                 <ChatsContainer showChat={showItem.chats} desktopView={desktopView} />
             </div>

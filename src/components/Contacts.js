@@ -4,7 +4,7 @@ import Contact from "./Contact"
 import SearchUser from "./SearchUser";
 import "../css/contacts.css"
 
-function Contacts({onChatWith, showContacts, desktopView, toggleItemToShow}){
+function Contacts({onChatWith, showContacts, desktopView, toggleItemToShow, clientHeight}){
     const {me} = useContext(userDetails)
     const [contacts, setContacts] = useState([])
 
@@ -64,7 +64,8 @@ function Contacts({onChatWith, showContacts, desktopView, toggleItemToShow}){
             showContacts && !desktopView ?
                 "contacts mobile" : "display-none"}>
             {contactComponents.slice(0, parseInt(document.documentElement.clientHeight / 200))}
-            <SearchUser toggleItemToShow={toggleItemToShow} onChatWith={onChatWith}/>
+
+            <SearchUser toggleItemToShow={toggleItemToShow} onChatWith={onChatWith} clientHeight={clientHeight}/>
         </div>
     )
 }
