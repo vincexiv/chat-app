@@ -18,24 +18,26 @@ function MainPage(){
         const localStorageAllUsers = JSON.parse(localStorage.getItem("allUsers"))
 
         const intervalId = setInterval(() => {
-            fetch('https://chat-app-back-end-production.up.railway.app/me')
-                .then(res => {
-                    if (res.status == 200) {
-                        res.json().then(data => {
-                            setMe(data)
-                            getAllUsers()
-                            setThey(JSON.parse(localStorage.getItem("they")))
-                            setMessages(data.messages)
-                        })
-                    } else if(localStorageMe && localStorageAllUsers){
-                        setMe(localStorageMe)
-                        setMessages(localStorageMe.messages)
-                        setThey(localStorageMe)
-                        setAllUsers(localStorageAllUsers)
-                    }else {
-                        navigate('/login')
-                    }
-                })
+            if(localStorageMe){
+                fetch(`https://chat-app-back-end-production.up.railway.app/users/${localStorageMe.id}`)
+                    .then(res => {
+                        if (res.status == 200) {
+                            res.json().then(data => {
+                                setMe(data)
+                                getAllUsers()
+                                setThey(JSON.parse(localStorage.getItem("they")))
+                                setMessages(data.messages)
+                            })
+                        } else if(localStorageMe && localStorageAllUsers){
+                            setMe(localStorageMe)
+                            setMessages(localStorageMe.messages)
+                            setThey(localStorageMe)
+                            setAllUsers(localStorageAllUsers)
+                        }else {
+                            navigate('/login')
+                        }
+                    })
+            }
         }, 1000)
 
         localStorage.setItem("intervalId", JSON.stringify(intervalId))
@@ -57,7 +59,7 @@ function MainPage(){
     window.addEventListener('resize', handleResize)
     
     function getAllUsers() {
-        fetch('https://chat-app-back-end-production.up.railway.app/users')
+        fetch('https://chat-app-back-end-production.up.railway.app/users', {mode: "cors"})
             .then(res => {
                 if (res.status == 200) {
                     res.json().then(data => {

@@ -14,15 +14,20 @@ function Login() {
 
     // Go to home if in session even when one pastes the path GET /login
     useEffect(()=>{
-        fetch('https://chat-app-back-end-production.up.railway.app/me')
-        .then(res => {
-            if(res.status == 200){
-                res.json().then(data => {
-                    localStorage.setItem("me", JSON.stringify(data))
-                    navigate('/home')
-                })
-            }
-        })
+        const localStorageMe = JSON.parse(localStorage.getItem("me"))
+
+        if(localStorageMe){
+            fetch(`https://chat-app-back-end-production.up.railway.app/users/${localStorageMe.id}`, {mode: 'cors'})
+            .then(res => {
+                if(res.status == 200){
+                    res.json().then(data => {
+                        localStorage.setItem("me", JSON.stringify(data))
+                        navigate('/home')
+                    })
+                }
+            })
+        }
+
     }, [])
 
     function handleInputChange(e) {
