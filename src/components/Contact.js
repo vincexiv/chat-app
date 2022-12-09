@@ -1,9 +1,14 @@
 import React from "react";
 import "../css/contact.css"
 
-function Contact({ contact, onChatWith }){
+function Contact({ contact, onChatWith, toggleItemToShow }){
+
+    function handleClick(){
+        toggleItemToShow()
+        onChatWith(contact.userId)
+    }
     return (
-        <div className="contact" onClick={(e)=> onChatWith(contact.userId) }>
+        <div className="contact" onClick={(e)=> handleClick() }>
             <div className="status"></div>
             <div className="full-name">
                 <h1>{contact.fullName}</h1>

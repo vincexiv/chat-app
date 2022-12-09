@@ -56,7 +56,7 @@ function Contacts({onChatWith, showContacts, desktopView, toggleItemToShow}){
     }
 
     const contactComponents = contacts.map(
-        contact => <Contact key={contact.userId} contact={contact} onChatWith={onChatWith} />
+        contact => <Contact key={contact.userId} contact={contact} toggleItemToShow={toggleItemToShow} onChatWith={onChatWith} />
     )
 
     return (
