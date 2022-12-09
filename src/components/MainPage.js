@@ -17,7 +17,7 @@ function MainPage(){
     useEffect(() => {
         const localStorageMe = JSON.parse(localStorage.getItem("me"))
 
-        if (Object.keys(localStorageMe).length) {
+        if (localStorage.getItem("loggedIn")) {
             fetch(`https://chat-app-back-end-production.up.railway.app/users/${localStorageMe.id}`, { mode: 'cors' })
                 .then(res => {
                     if (res.status == 200) {
@@ -42,13 +42,21 @@ function MainPage(){
         const localStorageAllUsers = JSON.parse(localStorage.getItem("allUsers"))
 
         const intervalId = setInterval(() => {
-            if(Object.keys(localStorageMe).length){
+            if (localStorage.getItem("loggedIn")){
                 fetch(`https://chat-app-back-end-production.up.railway.app/users/${localStorageMe.id}`)
                     .then(res => {
                         if (res.status == 200) {
                             res.json().then(data => {
                                 setMe(data)
-                                getAllUsers()
+
+                                const users = getAllUsers()
+                                users.then(data => {
+                                    if(localStorage.getItem("loggedIn")){
+                                        setAllUsers(data)
+                                        localStorage.setItem("allUsers", JSON.stringify(data))
+                                    }
+                                })
+
                                 setThey(JSON.parse(localStorage.getItem("they")))
                                 setMessages(data.messages)
                             })
@@ -85,13 +93,7 @@ function MainPage(){
     
     async function getAllUsers() {
         const res = await fetch('https://chat-app-back-end-production.up.railway.app/users', {mode: "cors"})
-            .then(res => {
-                if (res.status == 200) {
-                    res.json().then(data => {
-                        setAllUsers(data)
-                    })
-                }
-            })
+            .then(res => res.json())
 
         return res
     }
