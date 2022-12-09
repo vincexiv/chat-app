@@ -30,7 +30,7 @@ function SearchUser({ onChatWith, toggleItemToShow, clientHeight }){
     }
 
     function maxUsersToShow(){
-        return parseInt((clientHeight - 400) / 35)
+        return parseInt((clientHeight - 400) / 50)
     }
 
     return (
