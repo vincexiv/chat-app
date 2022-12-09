@@ -23,6 +23,7 @@ function Navbar(){
                 localStorage.removeItem("they")
                 localStorage.removeItem("me")
                 localStorage.removeItem("allUsers")
+                setMe({})
                 navigate('/login')
             }
         })
