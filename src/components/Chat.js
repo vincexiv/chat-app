@@ -3,8 +3,6 @@ import { userDetails } from "./UserDetailsContextProvider";
 import "../css/chat.css"
 
 function Chat({message}){
-    // const [messageContent, setMessageContent] = useState(message.content)
-    // const [editing, setEditing] = useState(false)
     const [currentState, setCurrentState] = useState({messageContent: message.content, editing: false})
     const messageContainerRef = useRef(null)
     const {me} = useContext(userDetails)
@@ -15,7 +13,6 @@ function Chat({message}){
     }
 
     function handleMessageChange(e){
-        // setMessageContent(e.target.value)
         setCurrentState(currentState => ({...currentState, messageContent: e.target.value}))
     }
 
@@ -27,16 +24,13 @@ function Chat({message}){
 
         messageEditForm.classList.remove('display-none')
         
-        // setEditing(editing => !editing)
         setCurrentState(currentState => ({ ...currentState, editing: !currentState.editing }))
     }
 
     function goBack(e){
-        // setEditing(editing => !editing)
         setCurrentState(currentState => ({ ...currentState, editing: !currentState.editing }))
 
         resetDisplayedItems()
-        // setMessageContent(message.content)
         setCurrentState(currentState => ({ ...currentState, messageContent: message.content }))
 
     }
@@ -65,7 +59,6 @@ function Chat({message}){
                 if (res.status == 200) {
                     res.json().then(data => {
                         console.log({ content: currentState.messageContent })
-                        // setEditing(editing => !editing)
                         setCurrentState(currentState => ({ ...currentState, editing: !currentState.editing }))
                         resetDisplayedItems()
                     })
