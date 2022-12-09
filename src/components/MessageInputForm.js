@@ -17,7 +17,6 @@ function MessageInputForm(){
             .then(res => {
                 if (res.status == 201) {
                     res.json().then(data => {
-                        setMessages(messages => ([...messages, data]))
                         setSending(false)
                         setMessageContent("")
                     })

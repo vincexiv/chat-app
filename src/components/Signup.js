@@ -1,10 +1,11 @@
 import React, {useState, useContext, useEffect} from "react";
 import {useNavigate} from 'react-router-dom'
-import {userDetails} from './UserDetailsContextProvider'
 import "../css/login-form.css"
+import { userDetails } from "./UserDetailsContextProvider";
 
 
 function Signup(){
+    const {setMe} = useContext(userDetails)
     const defaultState = {
         full_name: "",
         email: "",
@@ -26,6 +27,9 @@ function Signup(){
                 .then(res => {
                     if (res.status == 200) {
                         res.json().then(data => {
+                            localStorage.setItem("me", JSON.stringify(data))
+                            setMe(data)
+                            localStorage.setItem("allUsers", JSON.stringify([]))
                             navigate('/home')
                         })
                     }
