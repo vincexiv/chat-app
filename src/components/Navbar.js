@@ -12,7 +12,7 @@ function Navbar(){
     }
 
     function logOut(){
-        fetch('/logout', {
+        fetch('https://chat-app-back-end-production.up.railway.app/logout', {
             method: 'DELETE',
             headers: {'Content-Type': 'application/json', 'Accept': 'application/json'}
         })
@@ -21,7 +21,7 @@ function Navbar(){
                 clearInterval(JSON.parse(localStorage.getItem("intervalId")))
                 localStorage.removeItem("intervalId")
                 localStorage.removeItem("they")
-                setMe({})
+                localStorage.removeItem("me")
                 navigate('/login')
             }
         })

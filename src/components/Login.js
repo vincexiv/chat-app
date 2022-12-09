@@ -10,20 +10,24 @@ function Login() {
     }
     const [userInfo, setUserInfo] = useState(defaultState)
     const [submitting, setSubmitting] = useState(false)
-    const { setMe, setThey, setAllUsers, setMessages } = useContext(userDetails)
     const navigate = useNavigate()
 
     // Go to home if in session even when one pastes the path GET /login
     useEffect(()=>{
-        fetch('/me')
-        .then(res => {
-            if(res.status == 200){
-                res.json().then(data => {
-                    setMe(data)
-                    navigate('/home')
-                })
-            }
-        })
+        const localStorageMe = JSON.parse(localStorage.getItem("me"))
+
+        if(localStorageMe){
+            fetch(`https://chat-app-back-end-production.up.railway.app/users/${localStorageMe.id}`, {mode: 'cors'})
+            .then(res => {
+                if(res.status == 200){
+                    res.json().then(data => {
+                        localStorage.setItem("me", JSON.stringify(data))
+                        navigate('/home')
+                    })
+                }
+            })
+        }
+
     }, [])
 
     function handleInputChange(e) {
@@ -31,7 +35,7 @@ function Login() {
     }
 
     function login(){
-        fetch('/login', {
+        fetch('https://chat-app-back-end-production.up.railway.app/login', {
             method: 'POST',
             headers: { "Content-Type": "application/json", "Accept": "application/json" },
             body: JSON.stringify(userInfo)
@@ -39,14 +43,10 @@ function Login() {
             .then(res => {
                 if (res.status == 200) {
                     res.json().then(data => {
-                        setMe(data)
-                        setMessages(data.messages)
-
                         setSubmitting(false)
-                        setAllUsers(getAllUsers())
+                        localStorage.setItem("me", JSON.stringify(data))
+                        localStorage.setItem("allUsers", JSON.stringify([]))
                         navigate('/home')
-                        const intervalId = setUpPeriodicUpdating()
-                        localStorage.setItem("intervalId", JSON.stringify(intervalId))
                     })
                 } else if (res.status == 401) {
                     alert("Invalid username or password!")
@@ -55,35 +55,6 @@ function Login() {
                 }
                 setSubmitting(false)
             })  
-    }
-
-    function setUpPeriodicUpdating(){
-        const intervalId = setInterval(()=>{
-            fetch('/me')
-                .then(res => {
-                    if (res.status == 200) {
-                        res.json().then(data => {
-                            setMe(data)
-                            getAllUsers()
-                            setThey(JSON.parse(localStorage.getItem("they")))
-                            setMessages(data.messages)
-                        })
-                    } else {
-                        navigate('/login')
-                    }
-                })
-        }, 1000)
-
-        return intervalId
-    }
-
-    function getAllUsers(){
-        fetch('/users')
-        .then(res => {
-            if(res.status == 200){
-                res.json().then(data => setAllUsers(data))
-            }
-        })
     }
 
     function handleSubmit(e) {

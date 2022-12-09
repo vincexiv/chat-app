@@ -1,6 +1,13 @@
+@media screen and (min-width: 1440) {
+    :root {
+      font-size: 1.2rem;
+    }
+  }
+
 :root {
   --primary-color: rgb(14, 42, 71);
   --secondary-color: rgb(231, 54, 53);
+
 }
 
 * {

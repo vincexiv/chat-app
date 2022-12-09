@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from "react";
 import { userDetails } from "./UserDetailsContextProvider";
-import {useNavigate} from 'react-router-dom'
+import {json, useNavigate} from 'react-router-dom'
 import Contacts from "./Contacts";
 import ChatsContainer from "./ChatsContainer";
 import NowChatting from "./NowChatting";
@@ -14,11 +14,37 @@ function MainPage(){
     const navigate = useNavigate()
 
     useEffect(() => {
-        if(me){
-            clearInterval(JSON.parse(localStorage.getItem("intervalId")))
-            rememberMe()
+        const localStorageMe = JSON.parse(localStorage.getItem("me"))
+        const localStorageAllUsers = JSON.parse(localStorage.getItem("allUsers"))
+
+        const intervalId = setInterval(() => {
+            if(localStorageMe){
+                fetch(`https://chat-app-back-end-production.up.railway.app/users/${localStorageMe.id}`)
+                    .then(res => {
+                        if (res.status == 200) {
+                            res.json().then(data => {
+                                setMe(data)
+                                getAllUsers()
+                                setThey(JSON.parse(localStorage.getItem("they")))
+                                setMessages(data.messages)
+                            })
+                        } else if(localStorageMe && localStorageAllUsers){
+                            setMe(localStorageMe)
+                            setMessages(localStorageMe.messages)
+                            setThey(localStorageMe)
+                            setAllUsers(localStorageAllUsers)
+                        }else {
+                            navigate('/login')
+                        }
+                    })
+            }
+        }, 1000)
+
+        localStorage.setItem("intervalId", JSON.stringify(intervalId))
+        return function(){
+            return clearInterval(intervalId)
         }
-    }, [me])
+    }, [])
 
     function handleResize(){
         const clientWidth = document.documentElement.clientWidth
@@ -32,35 +58,14 @@ function MainPage(){
 
     window.addEventListener('resize', handleResize)
     
-    function rememberMe() {
-        let loggedOut = false
-
-        const intervalId = setInterval(() => {
-            fetch('/me')
-                .then(res => {
-                    if (res.status == 200) {
-                        res.json().then(data => {
-                            setMe(data)
-                            getAllUsers()
-                            setThey(JSON.parse(localStorage.getItem("they")))
-                            setMessages(data.messages)
-                        })
-                    } else {
-                        loggedOut = true
-                        navigate('/login')
-                    }
-                })
-        }, 1000)
-
-
-        loggedOut ? clearInterval(intervalId) :  localStorage.setItem("intervalId", JSON.stringify(intervalId))
-    }
-
     function getAllUsers() {
-        fetch('/users')
+        fetch('https://chat-app-back-end-production.up.railway.app/users', {mode: "cors"})
             .then(res => {
                 if (res.status == 200) {
-                    res.json().then(data => setAllUsers(data))
+                    res.json().then(data => {
+                        setAllUsers(data)
+                        localStorage.setItem("allUsers", JSON.stringify(data))
+                    })
                 }
             })
     }
@@ -92,7 +97,7 @@ function MainPage(){
                     <button className="users btn" onClick={toggleItemToShow}>{showItem.chats? "Go to Users": "Go to Chats"}</button>
                 </div>
 
-                <Contacts onChatWith={handleChatWith} showContacts={showItem.contacts} desktopView={desktopView} />
+                <Contacts onChatWith={handleChatWith} toggleItemToShow={toggleItemToShow} showContacts={showItem.contacts} desktopView={desktopView} />
 
                 <ChatsContainer showChat={showItem.chats} desktopView={desktopView} />
             </div>
