@@ -16,10 +16,33 @@ function MainPage(){
 
     useEffect(() => {
         const localStorageMe = JSON.parse(localStorage.getItem("me"))
+
+        if (Object.keys(localStorageMe).length) {
+            fetch(`https://chat-app-back-end-production.up.railway.app/users/${localStorageMe.id}`, { mode: 'cors' })
+                .then(res => {
+                    if (res.status == 200) {
+                        res.json().then(data => {
+                            localStorage.setItem("me", JSON.stringify(data))
+                            navigate('/home')
+                        })
+                    }else {
+                        navigate('/login')
+                        setMe({})
+                    }
+                })
+        }else {
+            navigate('/login')
+            setMe({})
+        }
+
+    }, [])
+
+    useEffect(() => {
+        const localStorageMe = JSON.parse(localStorage.getItem("me"))
         const localStorageAllUsers = JSON.parse(localStorage.getItem("allUsers"))
 
         const intervalId = setInterval(() => {
-            if(localStorageMe){
+            if(Object.keys(localStorageMe).length){
                 fetch(`https://chat-app-back-end-production.up.railway.app/users/${localStorageMe.id}`)
                     .then(res => {
                         if (res.status == 200) {
@@ -36,6 +59,7 @@ function MainPage(){
                             setAllUsers(localStorageAllUsers)
                         }else {
                             navigate('/login')
+                            setMe({})
                         }
                     })
             }
@@ -59,16 +83,17 @@ function MainPage(){
 
     window.addEventListener('resize', handleResize)
     
-    function getAllUsers() {
-        fetch('https://chat-app-back-end-production.up.railway.app/users', {mode: "cors"})
+    async function getAllUsers() {
+        const res = await fetch('https://chat-app-back-end-production.up.railway.app/users', {mode: "cors"})
             .then(res => {
                 if (res.status == 200) {
                     res.json().then(data => {
                         setAllUsers(data)
-                        localStorage.setItem("allUsers", JSON.stringify(data))
                     })
                 }
             })
+
+        return res
     }
 
     function handleChatWith(newChatMateId){

@@ -46,6 +46,7 @@ function Login() {
                         setSubmitting(false)
                         localStorage.setItem("me", JSON.stringify(data))
                         localStorage.setItem("allUsers", JSON.stringify([]))
+                        localStorage.setItem("loggedIn", true)
                         navigate('/home')
                     })
                 } else if (res.status == 401) {

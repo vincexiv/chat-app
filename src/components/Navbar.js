@@ -12,21 +12,24 @@ function Navbar(){
     }
 
     function logOut(){
-        fetch('https://chat-app-back-end-production.up.railway.app/logout', {
-            method: 'DELETE',
-            headers: {'Content-Type': 'application/json', 'Accept': 'application/json'}
-        })
-        .then(res => {
-            if(res.status == 204){
-                clearInterval(JSON.parse(localStorage.getItem("intervalId")))
-                localStorage.removeItem("intervalId")
-                localStorage.removeItem("they")
-                localStorage.removeItem("me")
-                localStorage.removeItem("allUsers")
-                setMe({})
-                navigate('/login')
-            }
-        })
+        if (JSON.parse(localStorage.getItem("loggedIn"))){
+            fetch('https://chat-app-back-end-production.up.railway.app/logout', {
+                method: 'DELETE',
+                headers: {'Content-Type': 'application/json', 'Accept': 'application/json'}
+            })
+            .then(res => {
+                if(res.status == 204){
+                    clearInterval(JSON.parse(localStorage.getItem("intervalId")))
+                    localStorage.removeItem("intervalId")
+                    localStorage.removeItem("they")
+                    localStorage.removeItem("me")
+                    localStorage.removeItem("allUsers")
+                    localStorage.removeItem("loggedIn")
+                    navigate('/login')
+                    setMe({})
+                }
+            })
+        }
     }
 
     return (
@@ -48,7 +51,7 @@ function Navbar(){
                     <li><a href="#">Contact</a></li>
 
                     <li><a href="#" onClick={logOut}>
-                        {Object.keys(me).length ? "Logout" : "Login"}</a>
+                        {localStorage.getItem("loggedIn") ? "Logout" : "Login"}</a>
                     </li>
                 </ul>
             </div>
