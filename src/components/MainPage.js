@@ -36,7 +36,7 @@ function MainPage(){
         let loggedOut = false
 
         const intervalId = setInterval(() => {
-            fetch('https://chat-app-back-end-production.up.railway.app/me')
+            fetch('/me')
                 .then(res => {
                     if (res.status == 200) {
                         res.json().then(data => {
@@ -57,7 +57,7 @@ function MainPage(){
     }
 
     function getAllUsers() {
-        fetch('https://chat-app-back-end-production.up.railway.app/users')
+        fetch('/users')
             .then(res => {
                 if (res.status == 200) {
                     res.json().then(data => setAllUsers(data))

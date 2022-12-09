@@ -20,7 +20,7 @@ function Signup(){
 
     // Go to home if in session even when one pastes the path GET /signup
     useEffect(() => {
-        fetch('https://chat-app-back-end-production.up.railway.app/me')
+        fetch('/me')
             .then(res => {
                 if (res.status == 200) {
                     res.json().then(data => {
@@ -39,7 +39,7 @@ function Signup(){
         e.preventDefault()
         setSubmitting(true)
         
-        fetch('https://chat-app-back-end-production.up.railway.app/signup', {
+        fetch('/signup', {
             method: 'POST',
             headers: {"Content-Type": "application/json", "Accept": "application/json"},
             body: JSON.stringify(userInfo)
@@ -66,7 +66,7 @@ function Signup(){
 
     function setUpPeriodicUpdating() {
         const intervalId = setInterval(() => {
-            fetch('https://chat-app-back-end-production.up.railway.app/me')
+            fetch('/me')
                 .then(res => {
                     if (res.status == 200) {
                         res.json().then(data => {
@@ -85,7 +85,7 @@ function Signup(){
     }
 
     function getAllUsers() {
-        fetch('https://chat-app-back-end-production.up.railway.app/users')
+        fetch('/users')
             .then(res => {
                 if (res.status == 200) {
                     res.json().then(data => setAllUsers(data))
