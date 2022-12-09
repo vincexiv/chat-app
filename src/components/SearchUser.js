@@ -9,7 +9,7 @@ function SearchUser({onChatWith}){
         allUsers? allUsers.slice(0, 6): [])
 
     useEffect(()=>{
-        fetch('https://chat-app-back-end-production.up.railway.app/users')
+        fetch('/users')
         .then(res => {
             if(res.status == 200){
                 res.json().then(data => {

@@ -48,7 +48,7 @@ function Chat({message}){
     }
 
     function handleDelete(){
-        fetch(`https://chat-app-back-end-production.up.railway.app/messages/${message.id}`, {
+        fetch(`/messages/${message.id}`, {
             method: 'DELETE',
             headers: {"Content-Type": "application/json", "Accept": "application/json"},
         })
@@ -56,7 +56,7 @@ function Chat({message}){
 
     function updateMessage(){
 
-        fetch(`https://chat-app-back-end-production.up.railway.app/messages/${message.id}`, {
+        fetch(`/messages/${message.id}`, {
             method: 'PATCH',
             headers: { "Content-Type": "application/json", "Accept": "application/json" },
             body: JSON.stringify({content: currentState.messageContent})
