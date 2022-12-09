@@ -1,7 +1,12 @@
 # Chattier App
 
 ## Brief Description
-This is a web app where user can get to interact with each other through text messages. Several users have already been set up so you can log in with their credentials and experience the app immedeately. If you're patient, please feel free to read along. Here are the usernames and passwords
+For a start, here are a list of useful links.
+1. [Front end as deployed on Netlify](https://main--euphonious-cannoli-496c7f.netlify.app)
+2. [Back end which is deployed on Railway.app](https://chat-app-back-end-production.up.railway.app)
+3. [A video demonstration on how the app works on the front end](https://drive.google.com/file/d/1QC1sDezkolYe-ZP2r00G34jbyk__3NwF/view?usp=sharing)
+
+That being said, this is a web app where user can get to interact with each other through text messages. Several users have already been set up so you can log in with their credentials and experience the app immedeately. If you're patient, please feel free to read along. Here are the usernames and passwords
 | **Username** | **Password** |
 |:------------:|:------------:|
 |  vincent     | vincent      |
