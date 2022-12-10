@@ -30,7 +30,6 @@ function Signup(){
                             localStorage.setItem("me", JSON.stringify(data))
                             setMe(data)
                             localStorage.setItem("allUsers", JSON.stringify([]))
-                            localStorage.setItem("loggedIn", true)
                             navigate('/home')
                         })
                     }
@@ -55,6 +54,7 @@ function Signup(){
             if(res.status == 201){
                 res.json().then(data => {                   
                     setSubmitting(false)
+                    localStorage.setItem("loggedIn", true)
                     navigate('/home')
                 })
             }else if (res.status == 422){
