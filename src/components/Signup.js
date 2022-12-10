@@ -30,6 +30,7 @@ function Signup(){
                             localStorage.setItem("me", JSON.stringify(data))
                             setMe(data)
                             localStorage.setItem("allUsers", JSON.stringify([]))
+                            localStorage.setItem("loggedIn", true)
                             navigate('/home')
                         })
                     }
