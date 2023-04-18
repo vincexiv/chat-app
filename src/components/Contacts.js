@@ -14,7 +14,7 @@ function Contacts({onChatWith, showContacts, desktopView, toggleItemToShow, clie
                 let contactArray = createContacts(me.messages)
                 contactArray = filterOut(contactArray, me)
                 contactArray = uniqueContacts(contactArray)
-                return contactArray
+                return contactArray.sort((a, b)=> unrepliedMessages(a) < unrepliedMessages(b))
             })
         }
     }, [me])
@@ -85,14 +85,12 @@ function Contacts({onChatWith, showContacts, desktopView, toggleItemToShow, clie
         return theirUnrepliedMessages.length
     }
 
-    const contactsSorted = contacts.sort((a, b)=> unrepliedMessages(a) < unrepliedMessages(b))
-
     return (
         <div className={desktopView ? "contacts" :
             showContacts && !desktopView ?
                 "contacts mobile" : "display-none"}>
             {
-                contactsSorted.slice(0, 3).map(contact => {
+                contacts.slice(0, 3).map(contact => {
                     return <Contact key={contact.userId}
                         unrepliedMessages={unrepliedMessages(contact)}
                         contact={contact}
