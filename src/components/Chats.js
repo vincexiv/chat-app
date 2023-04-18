@@ -1,11 +1,16 @@
-import React, {useContext} from "react";
+import React, {useContext, useEffect, useRef} from "react";
 import Chat from "./Chat";
 import {userDetails} from "./UserDetailsContextProvider"
 import "../css/chats.css"
 
 function Chats(){
+    const chatsRef = useRef()
     const {messages, me, they} = useContext(userDetails)
     let chats = []
+
+    useEffect(()=>{
+        chatsRef.current.scrollTop = chatsRef.current.scrollHeight
+    }, [messages])
 
     function compareTime(a, b){
         const date1 = new Date(a.created_at)
@@ -29,13 +34,9 @@ function Chats(){
 
     return (
         <div className="chats outer">
-            <div className="inner">
-
+            <div className="inner" ref={chatsRef}>
                 {
                     chats
-                    // chats.length > 6 ?
-                    // chats.slice(chats.length - 7, chats.length) : 
-                    // chats
                 }
             </div>
         </div>
