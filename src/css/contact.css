@@ -59,3 +59,16 @@
 .views p {
     font-size: 0.7rem;
 }
+
+.contact .full-name {
+    overflow: hidden;
+    white-space: nowrap;
+    display: flex;
+}
+
+.contact .full-name h1 {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    max-width: 80%;
+    overflow: hidden;
+}

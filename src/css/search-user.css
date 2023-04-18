@@ -63,6 +63,6 @@
 }
 
 .matched-users .full-name div{
-    white-space: nowrap;
     overflow: hidden;
+    white-space: nowrap;
 }
