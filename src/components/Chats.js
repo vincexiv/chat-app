@@ -9,7 +9,7 @@ function Chats(){
     let chats = []
 
     useEffect(()=>{
-        chatsRef.current.scrollTop = chatsRef.current.scrollHeight
+        // chatsRef.current.scrollTop = chatsRef.current.scrollHeight
     }, [])
 
     function compareTime(a, b){
