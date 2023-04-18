@@ -27,6 +27,7 @@ function MessageInputForm(){
     function handleSubmit(e){
         e.preventDefault()
         setSending(true)
+        setTimeout(()=>setSending(false), 3000)
         if(me && they){
             updateMessages({...senderAndReceiver, content: messageContent})
         }
