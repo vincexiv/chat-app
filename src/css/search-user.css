@@ -61,3 +61,8 @@
 .matched-users .full-name:hover {
     color: var(--secondary-color);
 }
+
+.matched-users .full-name div{
+    white-space: nowrap;
+    overflow: hidden;
+}
