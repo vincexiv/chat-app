@@ -1,7 +1,7 @@
 :root {
   --primary-color: rgb(14, 42, 71);
   --secondary-color: rgb(231, 54, 53);
-  font-size: clamp(16px, 0.022vh,24px);
+  font-size: clamp(16px, 2.22vh, 24px);
 }
 
 * {
@@ -14,7 +14,7 @@
 .container, .vertical-container {
   display: flex;
   justify-content: space-between;
-  width: calc(min(60rem, 80%));
+  width: 80%;
   margin: auto;
   align-items: center;
 }
