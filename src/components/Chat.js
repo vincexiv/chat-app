@@ -56,7 +56,7 @@ function Chat({message}){
             body: JSON.stringify({content: currentState.messageContent})
         })
             .then(res => {
-                if (res.status == 200) {
+                if (res.status === 200) {
                     res.json().then(data => {
                         console.log({ content: currentState.messageContent })
                         setCurrentState(currentState => ({ ...currentState, editing: !currentState.editing }))
@@ -78,7 +78,7 @@ function Chat({message}){
     return (
         <div ref={messageContainerRef} className="message-container">
             <div className="message">
-                <div className={message.sender == me.id? "sending": "receiving"}>
+                <div className={message.sender === me.id? "sending": "receiving"}>
                     <div className="dummy-before"></div>
                     <div>
                         <div className="content sent" onClick={handleOnClick}>{currentState.messageContent}</div>

@@ -25,7 +25,7 @@ function Signup(){
         if(localStorageMe){
             fetch(`https://chat-app-back-end-production.up.railway.app/users/${localStorageMe.id}`)
                 .then(res => {
-                    if (res.status == 200) {
+                    if (res.status === 200) {
                         res.json().then(data => {
                             localStorage.setItem("me", JSON.stringify(data))
                             setMe(data)
@@ -51,7 +51,7 @@ function Signup(){
             body: JSON.stringify(userInfo)
         })
         .then(res => {
-            if(res.status == 201){
+            if(res.status === 201){
                 res.json().then(data => {  
                     setSubmitting(false)
                     localStorage.setItem("me", JSON.stringify(data))
@@ -59,7 +59,7 @@ function Signup(){
                     localStorage.setItem("loggedIn", true)
                     navigate('/home')
                 })
-            }else if (res.status == 422){
+            }else if (res.status === 422){
                 res.json().then(data => alert("Unable to sign in\n" + data.errors.join('\n')))
             }else {
                 alert("An error occurred. Try again later")

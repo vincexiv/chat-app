@@ -15,7 +15,7 @@ function MessageInputForm(){
             body: JSON.stringify(newMessage)
         })
             .then(res => {
-                if (res.status == 201) {
+                if (res.status === 201) {
                     res.json().then(data => {
                         setSending(false)
                         setMessageContent("")

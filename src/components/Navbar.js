@@ -18,7 +18,7 @@ function Navbar(){
                 headers: {'Content-Type': 'application/json', 'Accept': 'application/json'}
             })
             .then(res => {
-                if(res.status == 204){
+                if(res.status === 204){
                     clearInterval(JSON.parse(localStorage.getItem("intervalId")))
                     localStorage.removeItem("intervalId")
                     localStorage.removeItem("they")

@@ -20,7 +20,7 @@ function MainPage(){
         if (localStorage.getItem("loggedIn")) {
             fetch(`https://chat-app-back-end-production.up.railway.app/users/${localStorageMe.id}`, { mode: 'cors' })
                 .then(res => {
-                    if (res.status == 200) {
+                    if (res.status === 200) {
                         res.json().then(data => {
                             localStorage.setItem("me", JSON.stringify(data))
                             navigate('/home')
@@ -45,7 +45,7 @@ function MainPage(){
             if (localStorage.getItem("loggedIn")){
                 fetch(`https://chat-app-back-end-production.up.railway.app/users/${localStorageMe.id}`)
                     .then(res => {
-                        if (res.status == 200) {
+                        if (res.status === 200) {
                             res.json().then(data => {
                                 setMe(data)
 
@@ -101,7 +101,7 @@ function MainPage(){
     function handleChatWith(newChatMateId){
 
         setThey(they => {
-            const newThey = allUsers.find(user => user.id == newChatMateId)
+            const newThey = allUsers.find(user => user.id === newChatMateId)
             localStorage.setItem("they", JSON.stringify(newThey))
             return newThey
         })

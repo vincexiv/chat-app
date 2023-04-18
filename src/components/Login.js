@@ -19,7 +19,7 @@ function Login() {
         if(localStorageMe){
             fetch(`https://chat-app-back-end-production.up.railway.app/users/${localStorageMe.id}`, {mode: 'cors'})
             .then(res => {
-                if(res.status == 200){
+                if(res.status === 200){
                     res.json().then(data => {
                         localStorage.setItem("me", JSON.stringify(data))
                         navigate('/home')
@@ -41,7 +41,7 @@ function Login() {
             body: JSON.stringify(userInfo)
         })
             .then(res => {
-                if (res.status == 200) {
+                if (res.status === 200) {
                     res.json().then(data => {
                         setSubmitting(false)
                         localStorage.setItem("me", JSON.stringify(data))
@@ -49,7 +49,7 @@ function Login() {
                         localStorage.setItem("loggedIn", true)
                         navigate('/home')
                     })
-                } else if (res.status == 401) {
+                } else if (res.status === 401) {
                     alert("Invalid username or password!")
                 } else {
                     alert("An error occurred. Try again later")

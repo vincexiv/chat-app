@@ -22,7 +22,7 @@ function Contacts({onChatWith, showContacts, desktopView, toggleItemToShow, clie
     function uniqueContacts(contactArray){
         let existingContactIds = []
         return contactArray.filter(contact => {
-            if (!existingContactIds.includes(contact.userId) && contact.userId != me.id){
+            if (!existingContactIds.includes(contact.userId) && contact.userId !== me.id){
                 existingContactIds.push(contact.userId)
                 return true
             }else{
@@ -32,12 +32,12 @@ function Contacts({onChatWith, showContacts, desktopView, toggleItemToShow, clie
     }
 
     function filterOut(contacts, me){
-        return contacts.filter(message => message.userId != me.id)
+        return contacts.filter(message => message.userId !== me.id)
     }
 
     function createContacts(messages){
         const contacts = messages.map(message => {
-                if (message.receiver == me.id) {
+                if (message.receiver === me.id) {
                     return {
                         fullName: message.sender_full_name,
                         username: message.sender_username,
