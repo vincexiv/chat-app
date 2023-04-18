@@ -1,10 +1,13 @@
-.chats {
+.chats.outer{
     height: calc(100vh - 21rem);
     background-color: rgba(0, 0, 0, 0.5);
-    padding: 1rem;
     border-radius: 1rem;
     border: solid rgba(255, 255, 255, 0.3) 0.1rem;
+    overflow: hidden;
+}
 
+.chats.outer .inner {
+    height: 100%;
     display: flex;
     align-items: center;
     flex-direction: column;

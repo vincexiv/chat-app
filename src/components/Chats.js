@@ -28,13 +28,16 @@ function Chats(){
     }
 
     return (
-        <div className="chats">
-            {
-                chats
-                // chats.length > 6 ?
-                // chats.slice(chats.length - 7, chats.length) : 
-                // chats
-            }
+        <div className="chats outer">
+            <div className="inner">
+
+                {
+                    chats
+                    // chats.length > 6 ?
+                    // chats.slice(chats.length - 7, chats.length) : 
+                    // chats
+                }
+            </div>
         </div>
     )
 }
