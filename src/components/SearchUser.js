@@ -30,7 +30,8 @@ function SearchUser({ onChatWith, toggleItemToShow, clientHeight }){
     }
 
     function maxUsersToShow(){
-        return parseInt((clientHeight - 400) / 50)
+        const maxUsers  = clientHeight / (5 * parseFloat(getComputedStyle(document.documentElement).fontSize))
+        return maxUsers
     }
 
     return (

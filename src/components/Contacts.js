@@ -63,7 +63,7 @@ function Contacts({onChatWith, showContacts, desktopView, toggleItemToShow, clie
         <div className={desktopView ? "contacts" :
             showContacts && !desktopView ?
                 "contacts mobile" : "display-none"}>
-            {contactComponents.slice(0, parseInt(document.documentElement.clientHeight / 200))}
+            {contactComponents.slice(0, parseInt(document.documentElement.clientHeight)/(10 * parseFloat(getComputedStyle(document.documentElement).fontSize)))}
 
             <SearchUser toggleItemToShow={toggleItemToShow} onChatWith={onChatWith} clientHeight={clientHeight}/>
         </div>
