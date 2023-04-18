@@ -87,20 +87,19 @@ function Contacts({onChatWith, showContacts, desktopView, toggleItemToShow, clie
 
     const contactsSorted = contacts.sort((a, b)=> unrepliedMessages(a) < unrepliedMessages(b))
 
-
-    const contactComponents = contactsSorted.map(
-        contact => <Contact key={contact.userId}
-                            unrepliedMessages={unrepliedMessages(contact)}
-                            contact={contact}
-                            toggleItemToShow={toggleItemToShow}
-                            onChatWith={onChatWith} />
-    )
-
     return (
         <div className={desktopView ? "contacts" :
             showContacts && !desktopView ?
                 "contacts mobile" : "display-none"}>
-            {contactComponents.slice(0, 3)}
+            {
+                contactsSorted.slice(0, 3).map(contact => {
+                    return <Contact key={contact.userId}
+                        unrepliedMessages={unrepliedMessages(contact)}
+                        contact={contact}
+                        toggleItemToShow={toggleItemToShow}
+                        onChatWith={onChatWith} />
+                })
+            }
 
             <SearchUser toggleItemToShow={toggleItemToShow} onChatWith={onChatWith} clientHeight={clientHeight}/>
         </div>
