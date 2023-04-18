@@ -9,7 +9,7 @@ import "../css/main-body.css"
 
 function MainPage(){
     const {me, setMe, they, setThey, setAllUsers, allUsers, setMessages} = useContext(userDetails)
-    const [desktopView, setDesktopView] = useState(document.documentElement.clientWidth > 750)
+    const [desktopView, setDesktopView] = useState(document.documentElement.clientWidth > 800)
     const [clientHeight, setClientHeight] = useState(document.documentElement.clientHeight)
     const [showItem, setShowItem] = useState({contacts: false, chats: true})
     const navigate = useNavigate()
@@ -82,7 +82,7 @@ function MainPage(){
     function handleResize(){
         const clientWidth = document.documentElement.clientWidth
 
-        if( clientWidth < 750){
+        if( clientWidth < (50 * parseFloat(getComputedStyle(document.documentElement).fontSize))){
             setDesktopView(false)
         }else {
             setDesktopView(true)
