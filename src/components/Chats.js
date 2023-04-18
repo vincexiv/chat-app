@@ -10,7 +10,7 @@ function Chats(){
 
     useEffect(()=>{
         chatsRef.current.scrollTop = chatsRef.current.scrollHeight
-    }, [messages])
+    }, [])
 
     function compareTime(a, b){
         const date1 = new Date(a.created_at)
