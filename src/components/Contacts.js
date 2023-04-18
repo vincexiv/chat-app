@@ -5,7 +5,7 @@ import SearchUser from "./SearchUser";
 import "../css/contacts.css"
 
 function Contacts({onChatWith, showContacts, desktopView, toggleItemToShow, clientHeight}){
-    const {me} = useContext(userDetails)
+    const {messages, me, they} = useContext(userDetails)
     const [contacts, setContacts] = useState([])
 
     useEffect(() => {
@@ -55,15 +55,52 @@ function Contacts({onChatWith, showContacts, desktopView, toggleItemToShow, clie
         return contacts
     }
 
-    const contactComponents = contacts.map(
-        contact => <Contact key={contact.userId} contact={contact} toggleItemToShow={toggleItemToShow} onChatWith={onChatWith} />
+
+    function compareTime(a, b){
+        const date1 = new Date(a.created_at)
+        const date2 = new Date(b.created_at)
+
+        return date1.getTime() - date2.getTime()
+    }
+
+    function getMyMessages(contact){
+        return messages.filter(message => {
+            return (message.sender === me.id) && (message.receiver === contact.userId)
+        })
+    }
+
+    function unrepliedMessages(contact){
+        const myMessages = getMyMessages(contact)
+
+        const myMostRecentMessage = myMessages.sort(compareTime)[myMessages.length - 1]  
+              
+        const theirUnrepliedMessages = messages.filter(message => {
+            if(myMessages.length){
+                return message.sender === contact.userId && message.created_at > myMostRecentMessage?.created_at
+            }else{
+                return message.sender === contact.userId
+            }            
+        })
+
+        return theirUnrepliedMessages.length
+    }
+
+    const contactsSorted = contacts.sort((a, b)=> unrepliedMessages(a) < unrepliedMessages(b))
+
+
+    const contactComponents = contactsSorted.map(
+        contact => <Contact key={contact.userId}
+                            unrepliedMessages={unrepliedMessages(contact)}
+                            contact={contact}
+                            toggleItemToShow={toggleItemToShow}
+                            onChatWith={onChatWith} />
     )
 
     return (
         <div className={desktopView ? "contacts" :
             showContacts && !desktopView ?
                 "contacts mobile" : "display-none"}>
-            {contactComponents.slice(0, parseInt(document.documentElement.clientHeight)/(12 * parseFloat(getComputedStyle(document.documentElement).fontSize)))}
+            {contactComponents.slice(0, 3)}
 
             <SearchUser toggleItemToShow={toggleItemToShow} onChatWith={onChatWith} clientHeight={clientHeight}/>
         </div>
