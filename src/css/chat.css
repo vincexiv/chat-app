@@ -7,6 +7,10 @@
     margin-right: auto;
 }
 
+.message .content {
+    max-width: 80%;
+}
+
 .message .sending {
     width: calc(min(max-content, 100%));
     display: flex;
