@@ -28,11 +28,6 @@
     overflow: hidden;
 }
 
-.input label {
-    width: max-content;
-    min-width: 60%;
-}
-
 .login {
     height: calc(100vh - 5rem);
     display: grid;
@@ -51,7 +46,8 @@
     border: none;
     outline: none;
     background-color: transparent;
-    width: min(10rem, 32rem);
+    min-width: min(9rem, 30vw);
+    margin-left: min(1rem, 2vw);
     font-size: 0.8rem;
     color: white;
 }
