@@ -7,7 +7,7 @@
 }
 
 .login form, .signup form {
-    width: 25rem;
+    width: min(25rem, 80vw);
     padding: 2rem;
     border-radius: 1rem;
     border: solid rgba(255, 255, 255, 0.5) 0.1rem;
@@ -22,9 +22,15 @@
 .input {
     display: flex;
     justify-content: space-between;
-    padding: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
     border-bottom: solid rgba(255, 255, 255, 0.1) 0.1rem;
-    /* border-radius: 0.5rem; */
+    overflow: hidden;
+}
+
+.input label {
+    width: max-content;
+    min-width: 60%;
 }
 
 .login {
@@ -45,7 +51,7 @@
     border: none;
     outline: none;
     background-color: transparent;
-    width: 10rem;
+    width: min(10rem, 32rem);
     font-size: 0.8rem;
     color: white;
 }
@@ -53,5 +59,12 @@
 .buttons {
     display: flex;
     justify-content: space-evenly;
+    gap: 1rem;
     padding-top: 2rem;
+}
+
+.buttons .btn {
+    font-size: 0.8rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
 }

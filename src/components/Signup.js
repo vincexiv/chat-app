@@ -81,7 +81,7 @@ function Signup(){
                         <input
                             type="text"
                             name="full_name"
-                            placeholder="John Doe"
+                            // placeholder="John Doe"
                             value={userInfo.full_name}
                             onChange={handleInputChange}
                             required/>
@@ -92,7 +92,7 @@ function Signup(){
                         <input
                             type="email"
                             name="email"
-                            placeholder="johndoe@example.com"
+                            // placeholder="johndoe@example.com"
                             value={userInfo.email}
                             onChange={handleInputChange}
                             required />
@@ -103,7 +103,7 @@ function Signup(){
                         <input
                             type="text"
                             name="username"
-                            placeholder="johndoe"
+                            // placeholder="johndoe"
                             value={userInfo.username}
                             onChange={handleInputChange}
                             required />
@@ -123,7 +123,7 @@ function Signup(){
                         <label htmlFor="bio">Bio</label>
                         <textarea
                             name="bio"
-                            placeholder="Here for a good time"
+                            // placeholder="Here for a good time"
                             onChange={handleInputChange}
                             value={userInfo.bio} />
                     </div>

@@ -1,6 +1,5 @@
 import React, {useState, useContext, useEffect} from "react";
 import { useNavigate } from 'react-router-dom'
-import { userDetails } from './UserDetailsContextProvider'
 import "../css/login-form.css"
 
 function Login() {
@@ -77,7 +76,6 @@ function Login() {
                         <input
                             type="text"
                             name="username"
-                            placeholder="johndoe"
                             value={userInfo.username}
                             onChange={handleInputChange}
                             required />
