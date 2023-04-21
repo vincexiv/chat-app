@@ -47,8 +47,8 @@ function Navbar(){
                     </span>
                     </div>
                 <ul>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
+                    {/* <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li> */}
 
                     <li>
                         <a href="#" onClick={logOut}>{localStorage.getItem("loggedIn") ? "Logout" : "Login"}</a>
