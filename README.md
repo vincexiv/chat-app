@@ -12,9 +12,6 @@ That being said, this is a web app where user can get to interact with each othe
 |:------------:|:------------:|
 |  vincent     | vincent      |
 |  rajab       |   rajab      |
-|  andrew      |  andrew      |
-|   zablon     |  zablon      |
-|    mercy     | mercy        |
 
 ## App Features
 
