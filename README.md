@@ -2,7 +2,7 @@
 
 ## Brief Description
 For a start, here are a list of useful links.
-1. [Front end as deployed on Netlify](https://main--euphonious-cannoli-496c7f.netlify.app)
+1. [Front end as deployed on Netlify](https://chattier1.netlify.app)
 2. [Back end which is deployed on Railway.app](https://chat-app-back-end-production.up.railway.app)
 3. [A video demonstration on how the app works on the front end](https://drive.google.com/file/d/1QC1sDezkolYe-ZP2r00G34jbyk__3NwF/view?usp=sharing)
 4. [A link to the github repo for the back end](https://github.com/VinceXIV/chat-app--back-end)
