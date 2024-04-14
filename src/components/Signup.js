@@ -84,6 +84,7 @@ function Signup(){
                             // placeholder="John Doe"
                             value={userInfo.full_name}
                             onChange={handleInputChange}
+                            placeholder="John Doe"
                             required/>
                     </div>
 
@@ -95,6 +96,7 @@ function Signup(){
                             // placeholder="johndoe@example.com"
                             value={userInfo.email}
                             onChange={handleInputChange}
+                            placeholder="example@email.com"
                             required />
                     </div>
 
@@ -106,6 +108,7 @@ function Signup(){
                             // placeholder="johndoe"
                             value={userInfo.username}
                             onChange={handleInputChange}
+                            placeholder="username"
                             required />
                     </div>
 
@@ -116,6 +119,7 @@ function Signup(){
                             name="password"
                             value={userInfo.password}
                             onChange={handleInputChange}
+                            placeholder="password"
                             required />
                     </div>
 
@@ -125,17 +129,19 @@ function Signup(){
                             name="bio"
                             // placeholder="Here for a good time"
                             onChange={handleInputChange}
-                            value={userInfo.bio} />
+                            value={userInfo.bio}
+                            placeholder="The quick brown fox jumps over the lazy white dog"
+                            />
                     </div>
 
-                    <div className="input">
+                    {/* <div className="input">
                         <label htmlFor="profile_picture">Profile Picture</label>
                         <input
                             type="text"
                             name="profile_picture"
                             onChange={handleInputChange}
                             value={userInfo.profile_picture} />
-                    </div>
+                    </div> */}
 
                     <div className="buttons">
                         <button className="btn">{submitting? "Signing You Up..." : "Signup"}</button>

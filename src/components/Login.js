@@ -78,6 +78,7 @@ function Login() {
                             name="username"
                             value={userInfo.username}
                             onChange={handleInputChange}
+                            placeholder="enter username"
                             required />
                     </div>
 
@@ -88,6 +89,7 @@ function Login() {
                             name="password"
                             value={userInfo.password}
                             onChange={handleInputChange}
+                            placeholder="enter password"
                             required />
                     </div>
 
